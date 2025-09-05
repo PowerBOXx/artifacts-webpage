@@ -1,0 +1,170 @@
+/* ========================================= */
+/* 文物详情页样式                */
+/* ========================================= */
+
+/* 初始状态：禁止垂直滚动 */
+.initial-state {
+    overflow-y: hidden;
+}
+
+/* 滚动状态：启用垂直滚动 */
+.scrolled {
+    overflow-y: auto;
+}
+
+.scrolling-container {
+    display: block;
+    min-height: 200vh;
+}
+
+.scrolled .scrolling-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding-top: 50px;
+}
+
+.model-viewer-area {
+    width: 100%;
+    height: 100vh;
+    transition: all 0.7s ease-in-out;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: var(--background-paper);
+}
+
+#enter-details-btn, #enter-details-btn-en {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 35px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 20;
+    background-color: var(--secondary-color);
+    color: var(--background-paper);
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.scrolled #enter-details-btn, .scrolled #enter-details-btn-en {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.scrolled .model-viewer-area {
+    width: 50%;
+    height: 100vh;
+}
+
+.model-viewer-3d {
+    width: 100%;
+    height: 100%;
+    --poster-color: var(--background-paper);
+    background-color: var(--background-paper);
+}
+
+.artifact-name-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    text-align: center;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.scrolled .artifact-name-overlay {
+    opacity: 0;
+}
+
+.artifact-name-overlay h1 {
+    font-size: 4rem;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
+.artifact-info {
+    padding: 3rem;
+    text-align: left;
+    background-color: var(--background-paper);
+    margin-top: 0;
+    position: relative;
+    box-sizing: border-box;
+    z-index: 5;
+}
+
+.scrolled .artifact-info {
+    flex-grow: 1;
+    margin-top: 0;
+    margin-left: 3rem;
+}
+
+.artifact-info h1 {
+    font-size: 2.8rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.artifact-info p {
+    font-size: 1.15rem;
+    color: var(--text-color);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 2rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: var(--secondary-color);
+    color: var(--background-paper);
+}
+
+/* ========================================= */
+/* 媒体查询                  */
+/* ========================================= */
+@media (max-width: 1024px) {
+    .scrolled .scrolling-container {
+        flex-direction: column;
+    }
+    .scrolled .model-viewer-area {
+        width: 100%;
+        height: 60vh;
+    }
+    .scrolled .artifact-info {
+        margin-left: 0;
+        margin-top: 2rem;
+    }
+    .artifact-name-overlay h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* ... 移动端样式 ... */
+}
