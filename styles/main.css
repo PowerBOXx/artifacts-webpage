@@ -3,19 +3,21 @@
 /* ========================================= */
 
 :root {
-    --primary-color: #7B3F00;
-    --secondary-color: #A0522D;
-    --text-color: #4A4A4A;
+    --primary-color: #7B3F00; /* 深棕色，用于标题和重要文字 */
+    --secondary-color: #A0522D; /* 暖棕色，用于链接和强调 */
+    --text-color: #4A4A4A; /* 柔和的深灰色文字 */
     --light-text-color: #888888;
-    --background-paper: #FDF8ED;
-    --accent-gold: #DAA520;
+    --background-paper: #FDF8ED; /* 浅米黄色背景，模拟纸张 */
+    --accent-gold: #DAA520; /* 点缀用金色 */
 
+    /* 字体选择 */
     --font-serif: 'STKaiti', 'KaiTi', 'SimSun', serif;
     --font-sans-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Microsoft YaHei', sans-serif;
     --font-heading: 'Noto Serif SC', 'Source Han Serif SC', serif;
     --font-body: 'Noto Serif SC', 'Source Han Serif SC', serif;
 }
 
+/* 基础样式 */
 html, body {
     margin: 0;
     padding: 0;
@@ -25,9 +27,10 @@ html, body {
     font-size: 16px;
     height: 100%;
     overflow-x: hidden;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /* 增加平滑滚动效果 */
 }
 
+/* 链接样式 */
 a {
     color: var(--secondary-color);
     text-decoration: none;
@@ -38,6 +41,7 @@ a:hover {
     color: var(--primary-color);
 }
 
+/* 标题通用样式 */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     color: var(--primary-color);
@@ -50,21 +54,24 @@ p {
     margin-bottom: 1em;
 }
 
+/* ========================================= */
+/* 头部导航栏                 */
+/* ========================================= */
 .header {
     background-color: rgba(253, 248, 237, 0.9);
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
     padding: 1.2rem 2.5rem;
-    position: fixed;
+    position: fixed; /* 固定定位，让它始终在顶部 */
     top: 0;
     width: 100%;
     z-index: 1000;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    transition: transform 0.5s ease-out;
+    transition: transform 0.5s ease-out; /* 导航条过渡效果 */
 }
 
 .scrolled .header {
-    transform: translateY(-100%);
+    transform: translateY(-100%); /* 滚动后向上滑出，完全隐藏 */
 }
 
 .navbar {
@@ -127,40 +134,153 @@ p {
     color: var(--background-paper);
 }
 
+/* ========================================= */
+/* 主内容区                  */
+/* ========================================= */
 .main-content {
+    max-width: 1300px;
+    margin: 3rem auto;
     padding: 0 3rem;
+    box-sizing: border-box;
 }
 
 /* ========================================= */
-/* 文物详情页新布局                */
+/* 主界面样式                 */
 /* ========================================= */
-/* 滚动容器，用于整个页面的滚动和布局转换 */
-.scrolling-container {
-    display: block; /* 初始为块级，让子元素垂直排列 */
-    min-height: 200vh; /* 确保有足够的滚动空间 */
+.hero-section {
+    text-align: center;
+    padding: 6rem 0;
+    background: url('assets/images/abstract_chinese_pattern.png') no-repeat center center / cover;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
 }
 
-/* 当页面滚动后，容器变为弹性盒布局 */
-.scrolled .scrolling-container {
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(253, 248, 237, 0.7);
+    z-index: 1;
+}
+
+.hero-section > * {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-section h1 {
+    font-size: 3.8rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.hero-section p {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    max-width: 900px;
+    margin: 0 auto 2.5rem;
+    font-family: var(--font-body);
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: var(--background-paper);
+    padding: 15px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================= */
+/* 文物列表样式                 */
+/* ========================================= */
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.artifact-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.artifact-card {
+    background-color: var(--background-paper);
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 1.5rem;
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding-top: 50px; /* 为顶部留出一些空间 */
+    flex-direction: column;
+    align-items: center;
 }
 
-/* 3D模型区域 */
+.artifact-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.artifact-thumb {
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 1.2rem;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+}
+
+.artifact-title {
+    padding: 0 1rem;
+    margin: 0;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ========================================= */
+/* 文物详情页样式                */
+/* ========================================= */
+.detail-page-wrapper {
+    min-height: 200vh; /* 确保页面有足够的滚动空间 */
+}
+
+/* 3D模型区域，初始状态固定在视口中 */
 .model-viewer-area {
     width: 100%;
     height: 100vh;
-    transition: all 0.7s ease-in-out;
-    position: relative;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 10;
     background-color: var(--background-paper);
+    transition: all 0.7s ease-in-out;
 }
 
-/* 滚动后模型区域的样式 */
+/* 当页面滚动时，模型区域的样式变化 */
 .scrolled .model-viewer-area {
     width: 50%;
     height: 100vh;
@@ -187,6 +307,7 @@ p {
     transition: opacity 0.3s ease-in-out;
 }
 
+/* 滚动后隐藏名称叠加层 */
 .scrolled .artifact-name-overlay {
     opacity: 0;
 }
@@ -200,22 +321,15 @@ p {
     line-height: 1.2;
 }
 
-/* 详情信息区域 */
+/* 详情信息区域，初始状态在视口下方 */
 .artifact-info {
     padding: 3rem;
     text-align: left;
     background-color: var(--background-paper);
-    margin-top: 0;
+    margin-top: 100vh;
+    z-index: 15;
     position: relative;
     box-sizing: border-box;
-    z-index: 5; /* 确保在模型之下 */
-}
-
-/* 滚动后详情信息的样式 */
-.scrolled .artifact-info {
-    flex-grow: 1; /* 占据剩余空间 */
-    margin-top: 0;
-    margin-left: 3rem; /* 与模型区域留出间距 */
 }
 
 .artifact-info h1 {
@@ -250,6 +364,9 @@ p {
     color: var(--background-paper);
 }
 
+/* ========================================= */
+/* 底部                    */
+/* ========================================= */
 .footer {
     text-align: center;
     padding: 2rem;
@@ -264,22 +381,104 @@ p {
 /* 媒体查询                  */
 /* ========================================= */
 @media (max-width: 1024px) {
-    .scrolled .scrolling-container {
-        flex-direction: column;
+    .main-content {
+        padding: 0 2rem;
     }
+
+    .hero-section h1 {
+        font-size: 3rem;
+    }
+
+    .hero-section p {
+        font-size: 1.1rem;
+    }
+
+    .artifact-list-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    /* 在小屏幕上，模型区域依然占据100%宽度，但高度缩小 */
     .scrolled .model-viewer-area {
         width: 100%;
         height: 60vh;
     }
-    .scrolled .artifact-info {
-        margin-left: 0;
-        margin-top: 2rem;
+
+    .artifact-info {
+        margin-top: 60vh;
     }
+
     .artifact-name-overlay h1 {
         font-size: 3rem;
     }
 }
 
 @media (max-width: 768px) {
-    /* 移动端样式... */
+    .header {
+        padding: 1rem 1.5rem;
+    }
+
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .logo {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .nav-links {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .nav-links a {
+        margin: 0 1rem;
+    }
+
+    .lang-toggle-btn {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .hero-section {
+        padding: 4rem 0;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-section p {
+        font-size: 1rem;
+    }
+
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .artifact-card {
+        padding: 1rem;
+    }
+
+    .artifact-thumb {
+        height: 180px;
+    }
+
+    .artifact-title {
+        font-size: 1.1rem;
+    }
+
+    .artifact-info {
+        padding: 2rem;
+    }
 }

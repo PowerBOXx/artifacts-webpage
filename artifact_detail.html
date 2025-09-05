@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="initial-state">
     <header class="header">
         <nav class="navbar">
             <a href="index.html" class="logo">古韵新境</a>
@@ -20,7 +20,7 @@
                 <a href="artifacts.html" data-lang="zh-CN">文物</a>
                 <a href="artifacts.html" data-lang="en-US" style="display:none;">Artifacts</a>
             </div>
-            <button class="lang-toggle-btn" onclick="toggleLanguage()">中文/EN"></button>
+            <button class="lang-toggle-btn" onclick="toggleLanguage()">中文/EN</button>
         </nav>
     </header>
     <main class="main-content detail-page">
@@ -31,6 +31,8 @@
                     <h1 id="artifact-name-zh" data-lang="zh-CN"></h1>
                     <h1 id="artifact-name-en" data-lang="en-US" style="display:none;"></h1>
                 </div>
+                <button class="cta-button" id="enter-details-btn" data-lang="zh-CN">进入详情</button>
+                <button class="cta-button" id="enter-details-btn-en" data-lang="en-US" style="display:none;">View Details</button>
             </div>
             <div class="artifact-info">
                 <h2 data-lang="zh-CN">文物介绍</h2>
@@ -67,6 +69,7 @@
         const artifactModelViewer = document.getElementById('artifact-model');
 
         if (artifact) {
+            // 填充文物信息
             document.getElementById('page-title').textContent = `古韵新境 - ${artifact.zh_name}`;
             document.getElementById('artifact-name-zh').textContent = artifact.zh_name;
             document.getElementById('artifact-name-en').textContent = artifact.en_name;
@@ -76,31 +79,24 @@
             artifactModelViewer.autoRotate = true;
             artifactModelViewer.removeAttribute('camera-controls');
 
-            // 监听 scroll 事件，执行平滑过渡
-            let isScrolled = false;
-            const scrollThreshold = window.innerHeight * 0.2; // 滚动阈值
+            // 监听按钮点击事件
+            document.getElementById('enter-details-btn').addEventListener('click', enterDetails);
+            document.getElementById('enter-details-btn-en').addEventListener('click', enterDetails);
+            
+            function enterDetails() {
+                body.classList.remove('initial-state');
+                body.classList.add('scrolled');
+                artifactModelViewer.setAttribute('camera-controls', 'true');
+                artifactModelViewer.autoRotate = false;
+            }
 
-            window.addEventListener('scroll', () => {
-                const scrolledDown = window.scrollY > scrollThreshold;
-
-                if (scrolledDown && !isScrolled) {
-                    isScrolled = true;
-                    body.classList.add('scrolled');
-                    artifactModelViewer.setAttribute('camera-controls', 'true');
-                    artifactModelViewer.autoRotate = false;
-                } else if (!scrolledDown && isScrolled) {
-                    isScrolled = false;
-                    body.classList.remove('scrolled');
-                    artifactModelViewer.removeAttribute('camera-controls');
-                    artifactModelViewer.autoRotate = true;
-                }
-            });
-
+            // 初始化语言显示
             document.addEventListener('DOMContentLoaded', () => {
                 toggleLanguage();
             });
 
         } else {
+            // 处理未找到文物的情况
             document.querySelector('.scrolling-container').innerHTML = `
                 <div style="text-align: center; padding: 5rem;">
                     <p class="not-found" data-lang="zh-CN">未找到该文物。</p>
