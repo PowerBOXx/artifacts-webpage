@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>古韵新境 - 文物</title>
     <link rel="stylesheet" href="styles/main.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -26,14 +27,15 @@
         <h2 class="page-title" data-lang="zh-CN">文物列表</h2>
         <h2 class="page-title" data-lang="en-US" style="display:none;">Artifacts List</h2>
         <div class="artifact-list-grid" id="artifact-list">
-            </div>
+            
+        </div>
     </main>
     <footer class="footer">
         <p>&copy; 2025 古韵新境. All rights reserved.</p>
     </footer>
     <script src="js/app.js"></script>
-    <script src="js/artifacts.js"></script> <script>
-        // 现在可以直接使用 artifacts 数组了
+    <script src="js/artifacts.js"></script>
+    <script>
         const listGrid = document.getElementById('artifact-list');
         artifacts.forEach(artifact => {
             const artifactCard = document.createElement('a');
@@ -45,6 +47,11 @@
                 <h3 class="artifact-title" data-lang="en-US" style="display:none;">${artifact.en_name}</h3>
             `;
             listGrid.appendChild(artifactCard);
+        });
+
+        // 初始化语言显示
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleLanguage();
         });
     </script>
 </body>
