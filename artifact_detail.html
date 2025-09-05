@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">古韵新境 - 文物详情</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="fullscreen-view">
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">古韵新境</a>
+            <div class="nav-links">
+                <a href="index.html" data-lang="zh-CN">首页</a>
+                <a href="index.html" data-lang="en-US" style="display:none;">Home</a>
+                <a href="artifacts.html" data-lang="zh-CN">文物</a>
+                <a href="artifacts.html" data-lang="en-US" style="display:none;">Artifacts</a>
+            </div>
+            <button class="lang-toggle-btn" onclick="toggleLanguage()">中文/EN</button>
+        </nav>
+    </header>
+    <main class="main-content detail-page">
+        <div class="detail-container" id="detail-container">
+            <div class="model-viewer-area">
+                <model-viewer id="artifact-model" class="model-viewer-3d" shadow-intensity="1" ar-status="not-presenting" ar auto-rotate></model-viewer>
+                <div class="artifact-name-overlay">
+                    <h1 id="artifact-name-zh" data-lang="zh-CN"></h1>
+                    <h1 id="artifact-name-en" data-lang="en-US" style="display:none;"></h1>
+                </div>
+            </div>
+            <div class="artifact-info">
+                <h2 data-lang="zh-CN">文物介绍</h2>
+                <h2 data-lang="en-US" style="display:none;">Artifact Introduction</h2>
+                <p id="artifact-desc-zh" data-lang="zh-CN"></p>
+                <p id="artifact-desc-en" data-lang="en-US" style="display:none;"></p>
+                
+                <h3 data-lang="zh-CN">历史背景</h3>
+                <h3 data-lang="en-US" style="display:none;">Historical Background</h3>
+                <p data-lang="zh-CN">此处添加关于文物更详细的历史背景信息。可以包括发现地点、时期意义、文化影响等，让参观者对文物有更全面的了解。</p>
+                <p data-lang="en-US" style="display:none;">Add more detailed historical background information about the artifact here. This could include its discovery location, significance of its era, cultural impact, and more, providing visitors with a comprehensive understanding.</p>
+
+                <h3 data-lang="zh-CN">艺术特色</h3>
+                <h3 data-lang="en-US" style="display:none;">Artistic Features</h3>
+                <p data-lang="zh-CN">深入探讨文物的艺术风格和工艺特点。例如雕刻技法、材质运用、纹饰寓意等，突出其艺术价值。</p>
+                <p data-lang="en-US" style="display:none;">Delve into the artistic style and craftsmanship of the artifact. For instance, carving techniques, material usage, and symbolic meanings of patterns, highlighting its artistic value.</p>
+                
+                <a href="artifacts.html" class="back-button" data-lang="zh-CN">返回列表</a>
+                <a href="artifacts.html" class="back-button" data-lang="en-US" style="display:none;">Back to list</a>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 古韵新境. All rights reserved.</p>
+    </footer>
+    <script src="js/app.js"></script>
+    <script src="js/artifacts.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const artifactId = urlParams.get('id');
+        const artifact = artifacts.find(a => a.id === artifactId);
+        
+        const body = document.body;
+        const artifactModelViewer = document.getElementById('artifact-model');
+        const artifactInfo = document.querySelector('.artifact-info');
+
+        if (artifact) {
+            // 填充文物信息
+            document.getElementById('page-title').textContent = `古韵新境 - ${artifact.zh_name}`;
+            document.getElementById('artifact-name-zh').textContent = artifact.zh_name;
+            document.getElementById('artifact-name-en').textContent = artifact.en_name;
+            document.getElementById('artifact-desc-zh').textContent = artifact.zh_desc;
+            document.getElementById('artifact-desc-en').textContent = artifact.en_desc;
+            artifactModelViewer.src = artifact.model;
+
+            // 初始状态：让模型自动旋转，并禁用相机控制，等待用户交互
+            artifactModelViewer.autoRotate = true;
+            artifactModelViewer.removeAttribute('camera-controls');
+
+            // 点击模型或背景切换到详情视图
+            artifactModelViewer.addEventListener('click', () => {
+                if (body.classList.contains('fullscreen-view')) {
+                    toggleToDetailView();
+                }
+            });
+
+            // 切换到详情视图的函数
+            const toggleToDetailView = () => {
+                body.classList.remove('fullscreen-view');
+                body.classList.add('detail-view');
+                // 启用相机控制
+                artifactModelViewer.setAttribute('camera-controls', 'true');
+                artifactModelViewer.autoRotate = false;
+            };
+
+            // 确保 DOM 加载后运行语言切换
+            document.addEventListener('DOMContentLoaded', () => {
+                toggleLanguage();
+            });
+
+        } else {
+            // 处理未找到文物的情况
+            document.querySelector('#detail-container').innerHTML = `
+                <div style="text-align: center; padding: 5rem;">
+                    <p class="not-found" data-lang="zh-CN">未找到该文物。</p>
+                    <p class="not-found" data-lang="en-US" style="display:none;">Artifact not found.</p>
+                    <a href="artifacts.html" class="back-button" data-lang="zh-CN">返回列表</a>
+                    <a href="artifacts.html" class="back-button" data-lang="en-US" style="display:none;">Back to list</a>
+                </div>
+            `;
+            // 如果未找到，也需要初始化语言切换
+            document.addEventListener('DOMContentLoaded', () => {
+                toggleLanguage();
+            });
+        }
+    </script>
+</body>
+</html>

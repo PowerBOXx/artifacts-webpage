@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古韵新境 - 文物</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">古韵新境</a>
+            <div class="nav-links">
+                <a href="index.html" data-lang="zh-CN">首页</a>
+                <a href="index.html" data-lang="en-US" style="display:none;">Home</a>
+                <a href="artifacts.html" data-lang="zh-CN">文物</a>
+                <a href="artifacts.html" data-lang="en-US" style="display:none;">Artifacts</a>
+            </div>
+            <button class="lang-toggle-btn" onclick="toggleLanguage()">中文/EN</button>
+        </nav>
+    </header>
+    <main class="main-content">
+        <h2 class="page-title" data-lang="zh-CN">文物列表</h2>
+        <h2 class="page-title" data-lang="en-US" style="display:none;">Artifacts List</h2>
+        <div class="artifact-list-grid" id="artifact-list">
+            </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 古韵新境. All rights reserved.</p>
+    </footer>
+    <script src="js/app.js"></script>
+    <script src="js/artifacts.js"></script> <script>
+        // 现在可以直接使用 artifacts 数组了
+        const listGrid = document.getElementById('artifact-list');
+        artifacts.forEach(artifact => {
+            const artifactCard = document.createElement('a');
+            artifactCard.href = `artifact_detail.html?id=${artifact.id}`;
+            artifactCard.className = 'artifact-card';
+            artifactCard.innerHTML = `
+                <img src="${artifact.image}" alt="${artifact.zh_name}" class="artifact-thumb">
+                <h3 class="artifact-title" data-lang="zh-CN">${artifact.zh_name}</h3>
+                <h3 class="artifact-title" data-lang="en-US" style="display:none;">${artifact.en_name}</h3>
+            `;
+            listGrid.appendChild(artifactCard);
+        });
+    </script>
+</body>
+</html>
