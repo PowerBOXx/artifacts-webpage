@@ -50,6 +50,33 @@
                 <h3 data-lang="en-US" style="display:none;">Artistic Features</h3>
                 <p data-lang="zh-CN">深入探讨文物的艺术风格和工艺特点。例如雕刻技法、材质运用、纹饰寓意等，突出其艺术价值。</p>
                 <p data-lang="en-US" style="display:none;">Delve into the artistic style and craftsmanship of the artifact. For instance, carving techniques, material usage, and symbolic meanings of patterns, highlighting its artistic value.</p>
+
+                <section class="process-flow-section">
+                    <h2 class="section-title" data-lang="zh-CN">数字建模流程</h2>
+                    <h2 class="section-title" data-lang="en-US" style="display:none;">Digital Modeling Process</h2>
+                    <div class="card-stack-wrapper" id="card-stack-wrapper">
+                        <div class="flow-card" data-step="1">
+                            <h4 data-lang="zh-CN">1. 原始影像采集</h4>
+                            <h4 data-lang="en-US" style="display:none;">1. Raw Image Capture</h4>
+                            <img id="flow-image" src="" alt="原始影像" class="flow-visual">
+                        </div>
+                        <div class="flow-card" data-step="2">
+                            <h4 data-lang="zh-CN">2. 点云数据处理</h4>
+                            <h4 data-lang="en-US" style="display:none;">2. Point Cloud Processing</h4>
+                            <model-viewer id="flow-model-pointcloud" class="flow-visual" camera-controls></model-viewer>
+                        </div>
+                        <div class="flow-card" data-step="3">
+                            <h4 data-lang="zh-CN">3. 模型拓扑优化</h4>
+                            <h4 data-lang="en-US" style="display:none;">3. Model Optimization</h4>
+                            <model-viewer id="flow-model-notexture" class="flow-visual" camera-controls></model-viewer>
+                        </div>
+                        <div class="flow-card" data-step="4">
+                            <h4 data-lang="zh-CN">4. 纹理贴图渲染</h4>
+                            <h4 data-lang="en-US" style="display:none;">4. Texture Rendering</h4>
+                            <model-viewer id="flow-model-final" class="flow-visual" camera-controls></model-viewer>
+                        </div>
+                    </div>
+                </section>
                 
                 <a href="artifacts.html" class="back-button" data-lang="zh-CN">返回列表</a>
                 <a href="artifacts.html" class="back-button" data-lang="en-US" style="display:none;">Back to list</a>
@@ -70,7 +97,7 @@
         const artifactModelViewer = document.getElementById('artifact-model');
 
         if (artifact) {
-            // 填充文物信息
+            // 填充主文物信息
             document.getElementById('page-title').textContent = `古韵新境 - ${artifact.zh_name}`;
             document.getElementById('artifact-name-zh').textContent = artifact.zh_name;
             document.getElementById('artifact-name-en').textContent = artifact.en_name;
@@ -79,6 +106,12 @@
             artifactModelViewer.src = artifact.model;
             artifactModelViewer.autoRotate = true;
             artifactModelViewer.removeAttribute('camera-controls');
+
+            // 填充流程图信息
+            document.getElementById('flow-image').src = artifact.image;
+            document.getElementById('flow-model-pointcloud').src = artifact.model;
+            document.getElementById('flow-model-notexture').src = artifact.model;
+            document.getElementById('flow-model-final').src = artifact.model;
 
             // 监听按钮点击事件
             document.getElementById('enter-details-btn').addEventListener('click', enterDetails);
@@ -91,6 +124,37 @@
                 artifactModelViewer.autoRotate = false;
             }
 
+            // 流程图卡片展开逻辑
+            const cardStackWrapper = document.getElementById('card-stack-wrapper');
+            let isExpanded = false;
+            cardStackWrapper.addEventListener('click', () => {
+                if (!isExpanded) {
+                    cardStackWrapper.classList.add('expanded');
+                    isExpanded = true;
+                }
+            });
+
+            // 控制模型渲染效果
+            const noTextureModel = document.getElementById('flow-model-notexture');
+            const pointCloudModel = document.getElementById('flow-model-pointcloud');
+            
+            // 当无贴图模型加载完成时，移除其纹理
+            noTextureModel.addEventListener('load', () => {
+                const materials = noTextureModel.model.materials;
+                if (materials && materials.length > 0) {
+                    for (let material of materials) {
+                        material.pbrMetallicRoughness.baseColorTexture.factor = null;
+                        material.pbrMetallicRoughness.baseColorFactor = [0.8, 0.8, 0.8, 1]; // 设置为灰色
+                    }
+                }
+            });
+            
+            // 当点云效果模型加载完成时，应用视觉效果
+            pointCloudModel.addEventListener('load', () => {
+                pointCloudModel.style.filter = 'sepia(1) blur(1px)';
+                pointCloudModel.style.opacity = '0.5';
+            });
+            
             // 初始化语言显示
             document.addEventListener('DOMContentLoaded', () => {
                 toggleLanguage();

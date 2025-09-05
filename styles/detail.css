@@ -168,3 +168,117 @@
 @media (max-width: 768px) {
     /* ... 移动端样式 ... */
 }
+
+/* ========================================= */
+/* 新增：流程图样式               */
+/* ========================================= */
+.process-flow-section {
+    margin-top: 5rem;
+}
+
+.process-flow-section .section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+}
+
+.card-stack-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5%;
+    position: relative;
+    height: 60vh;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+
+/* 卡片堆叠的默认状态 */
+.flow-card {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) translateX(0);
+    width: 25%;
+    height: 80%;
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 10;
+    will-change: transform, width;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* 第一张卡片初始显示 */
+.card-stack-wrapper[data-step="1"] {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 堆叠效果：每个卡片向左偏移 */
+.flow-card[data-step="1"] { transform: translateY(-50%) translateX(0); z-index: 10; opacity: 1; pointer-events: auto; }
+.flow-card[data-step="2"] { transform: translateY(-50%) translateX(-15%); z-index: 9; opacity: 1; pointer-events: auto; }
+.flow-card[data-step="3"] { transform: translateY(-50%) translateX(-30%); z-index: 8; opacity: 1; pointer-events: auto; }
+.flow-card[data-step="4"] { transform: translateY(-50%) translateX(-45%); z-index: 7; opacity: 1; pointer-events: auto; }
+
+
+/* 展开效果：卡片从左向右排列 */
+.card-stack-wrapper.expanded .flow-card {
+    position: relative;
+    transform: none;
+    top: auto;
+    left: auto;
+    width: 22%;
+    margin: 0 1.5%;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 视觉内容（图片和模型） */
+.flow-visual {
+    width: 100%;
+    height: 75%;
+    object-fit: contain;
+    margin-top: 1.5rem;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.flow-card h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* ========================================= */
+/* 媒体查询 - 流程图                   */
+/* ========================================= */
+@media (max-width: 1024px) {
+    .card-stack-wrapper {
+        flex-direction: column;
+        height: auto;
+        padding-top: 5rem;
+        padding-bottom: 2rem;
+    }
+
+    .flow-card {
+        position: relative;
+        width: 80%;
+        margin-bottom: 2rem;
+        transform: none !important;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .card-stack-wrapper.expanded .flow-card {
+        margin: 0 auto 2rem auto;
+        width: 80%;
+    }
+}
