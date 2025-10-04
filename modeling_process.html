@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title" data-lang="zh-CN">文物数字建模流程</title>
+    <title data-lang="en-US" style="display:none;">Artifact Digital Modeling Process</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/detail.css"> 
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="full-process-page">
+    <div id="header-placeholder"></div>
+    <main class="main-content process-flow-container">
+        <h1 class="page-title" data-lang="zh-CN">文物数字化建模全流程</h1>
+        <h1 class="page-title" data-lang="en-US" style="display:none;">The Complete Artifact Digital Modeling Process</h1>
+
+        <p class="intro-text" data-lang="zh-CN">文物数字化是一项结合了摄影、计算机图形学和文物保护的复杂工程。以下流程图将揭示一件珍贵文物如何从物理实体，一步步转化为可在虚拟空间中永久保存和展示的 3D 模型。</p>
+        <p class="intro-text" data-lang="en-US" style="display:none;">Artifact digitization is a complex project combining photography, computer graphics, and conservation science. The flowchart below reveals how a precious artifact transforms from a physical entity into a 3D model that can be permanently preserved and displayed in a virtual space.</p>
+        
+        <div class="vertical-flow-wrapper" id="vertical-flow-wrapper">
+
+            <section class="flow-step step-1">
+                <div class="step-visual">
+                    <div class="step-number">01</div>
+                    <img src="assets/images/tang_official_thumb.jpg" alt="原始影像" class="flow-visual-image">
+                </div>
+                <div class="step-content">
+                    <h2 data-lang="zh-CN">原始影像采集</h2>
+                    <h2 data-lang="en-US" style="display:none;">Raw Image Capture</h2>
+                    <p data-lang="zh-CN">这是数字化的起点。通过结构光扫描、激光雷达或**摄影测量（Photogrammetry）**技术，对文物进行全方位、高精度的图像或点云数据采集。**数十万张**重叠拍摄的影像，构成了后续建模的基础。</p>
+                    <p data-lang="zh-CN">确保光源均匀，避免阴影，是保障最终模型色彩准确度的关键。任何细节上的疏漏都可能导致模型产生空洞或形变。</p>
+                    <p data-lang="en-US" style="display:none;">This is the starting point of digitization. High-precision images or point cloud data are captured from all angles using structured light scanning, LiDAR, or **Photogrammetry**. **Hundreds of thousands** of overlapping images form the basis for subsequent modeling.</p>
+                    <p data-lang="en-US" style="display:none;">Ensuring uniform lighting and avoiding shadows is crucial for accurate color representation. Any oversight in detail can lead to holes or deformation in the final model.</p>
+                </div>
+            </section>
+
+            <section class="flow-step step-2 reverse-layout">
+                <div class="step-visual">
+                    <div class="step-number">02</div>
+                    <model-viewer id="flow-model-pointcloud" class="flow-visual-model" camera-controls></model-viewer>
+                </div>
+                <div class="step-content">
+                    <h2 data-lang="zh-CN">点云数据处理与对齐</h2>
+                    <h2 data-lang="en-US" style="display:none;">Point Cloud Processing & Alignment</h2>
+                    <p data-lang="zh-CN">软件将海量照片计算转化为**点云数据**（Point Cloud）。每个点都带有三维坐标和色彩信息。此阶段需要进行**点云降噪**、去冗余和不同角度点云的**高精度对齐**，确保模型的几何结构准确无误。</p>
+                    <p data-lang="zh-CN">点云是文物最初的三维数字形态，虽然颗粒感强，但真实地反映了原始数据的采集密度和细节保留程度。</p>
+                    <p data-lang="en-US" style="display:none;">Software converts the massive photos into **Point Cloud data**. Each point contains 3D coordinates and color information. This stage involves **noise reduction**, redundancy removal, and **high-precision alignment** of point clouds from different angles to ensure geometric accuracy.</p>
+                    <p data-lang="en-US" style="display:none;">The point cloud is the artifact's initial 3D digital form; though grainy, it accurately reflects the capture density and detail preservation of the raw data.</p>
+                </div>
+            </section>
+
+            <section class="flow-step step-3">
+                <div class="step-visual">
+                    <div class="step-number">03</div>
+                    <model-viewer id="flow-model-notexture" class="flow-visual-model" camera-controls></model-viewer>
+                </div>
+                <div class="step-content">
+                    <h2 data-lang="zh-CN">模型拓扑优化与修补</h2>
+                    <h2 data-lang="en-US" style="display:none;">Model Optimization & Retopology</h2>
+                    <p data-lang="zh-CN">点云转化为**三角网格模型**后，需要进行**拓扑优化（Retopology）**。高面数的原始模型会被简化，以适应网页和移动端的流畅渲染。同时，人工修补扫描过程中产生的空洞和细微缺陷。</p>
+                    <p data-lang="zh-CN">此处的白模（无贴图）清晰展示了文物最基础的几何形态和网格结构。它是一个轻量化、结构完整的“骨架”。</p>
+                    <p data-lang="en-US" style="display:none;">After converting the point cloud into a **triangular mesh model**, **Retopology** is performed. The high-polygon original model is simplified for smooth rendering on web and mobile devices. Manual patching is also done to fix holes and defects from the scanning process.</p>
+                    <p data-lang="en-US" style="display:none;">The white model (no texture) clearly shows the artifact's basic geometric shape and mesh structure. It is a lightweight, structurally complete "skeleton."</p>
+                </div>
+            </section>
+
+            <section class="flow-step step-4 reverse-layout">
+                <div class="step-visual">
+                    <div class="step-number">04</div>
+                    <model-viewer id="flow-model-final" class="flow-visual-model" camera-controls></model-viewer>
+                </div>
+                <div class="step-content">
+                    <h2 data-lang="zh-CN">纹理贴图与最终渲染</h2>
+                    <h2 data-lang="en-US" style="display:none;">Texturing and Final Rendering</h2>
+                    <p data-lang="zh-CN">将高分辨率的色彩信息（照片纹理）**投影烘焙**到优化的网格模型上。同时，调整法线贴图、粗糙度贴图等，以重现文物的材质、反光和细节。最终导出为 **GLB/GLTF** 格式。</p>
+                    <p data-lang="zh-CN">这个最终模型是观众在网站上看到的，它结合了最精确的几何形状和最逼真的外观材质，实现了数字文物的高保真展示。</p>
+                    <p data-lang="en-US" style="display:none;">High-resolution color information (photo textures) is **projected and baked** onto the optimized mesh model. Normal maps and roughness maps are adjusted to reproduce the artifact's material, reflections, and details. The model is finally exported as **GLB/GLTF**.</p>
+                    <p data-lang="en-US" style="display:none;">This final model is what visitors see on the website, combining the most accurate geometry with the most realistic appearance for a high-fidelity digital artifact display.</p>
+                </div>
+            </section>
+        </div>
+
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 古韵新境. All rights reserved.</p>
+    </footer>
+    <script src="js/app.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/artifacts.js"></script>
+    <script>
+        // 假设用于流程图展示的模型是唐代文官俑 (ID: tang-official)
+        // 请确保您的 js/artifacts.js 中有 ID 为 'tang-official' 的文物数据
+        const processArtifact = artifacts.find(a => a.id === 'tang-official'); 
+        
+        if (processArtifact) {
+            // 设置模型源
+            const modelSrc = processArtifact.model;
+            
+            const processModels = document.querySelectorAll('.flow-visual-model');
+            processModels.forEach(model => {
+                model.src = modelSrc;
+                model.autoRotate = true; 
+            });
+
+            // ===========================================
+            // 模型渲染效果逻辑：白模与点云效果 (保持一致)
+            // ===========================================
+
+            // 辅助函数：将模型材质设置为白模效果 (移除贴图)
+            function setModelToWhite(modelViewerElement) {
+                modelViewerElement.addEventListener('load', () => {
+                    const materials = modelViewerElement.model.materials;
+                    if (materials && materials.length > 0) {
+                        for (let material of materials) {
+                            if (material.pbrMetallicRoughness.baseColorTexture) {
+                                material.pbrMetallicRoughness.baseColorTexture.factor = null;
+                            }
+                            material.pbrMetallicRoughness.baseColorFactor = [0.9, 0.9, 0.9, 1]; // 浅灰色
+                            material.metallicFactor = 0.1; 
+                            material.roughnessFactor = 0.8; 
+                        }
+                    }
+                }, { once: true });
+            }
+
+            // 2. 点云效果模型：先设置为白模，再应用复杂的CSS滤镜模拟点云
+            const pointCloudModel = document.getElementById('flow-model-pointcloud');
+            setModelToWhite(pointCloudModel);
+            pointCloudModel.addEventListener('load', () => {
+                pointCloudModel.style.filter = 'contrast(150%) brightness(150%) sepia(80%) hue-rotate(20deg) saturate(200%) blur(0.5px) drop-shadow(0 0 1px #fff) drop-shadow(0 0 3px #fff)';
+                pointCloudModel.style.opacity = '0.7'; 
+            }, { once: true });
+
+
+            // 3. 无贴图模型：设置为白模
+            const noTextureModel = document.getElementById('flow-model-notexture');
+            setModelToWhite(noTextureModel);
+
+
+        } else {
+            document.querySelector('.main-content').innerHTML = `<h1 style="text-align:center; padding-top: 5rem;">未找到用于演示的默认文物数据。</h1>`;
+        }
+
+        // 初始化语言显示
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleLanguage();
+        });
+    </script>
+</body>
+</html>

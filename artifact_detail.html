@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">古韵新境 - 文物详情</title>
+    <title id="page-title">- 文物详情 -</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/detail.css">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
@@ -11,19 +12,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="initial-state">
-    <header class="header">
-        <nav class="navbar">
-            <a href="index.html" class="logo">古韵新境</a>
-            <div class="nav-links">
-                <a href="index.html" data-lang="zh-CN">首页</a>
-                <a href="index.html" data-lang="en-US" style="display:none;">Home</a>
-                <a href="artifacts.html" data-lang="zh-CN">文物</a>
-                <a href="artifacts.html" data-lang="en-US" style="display:none;">Artifacts</a>
-            </div>
-            <button class="lang-toggle-btn" onclick="toggleLanguage()">中文/EN</button>
-        </nav>
-    </header>
+    <div id="header-placeholder"></div>
     <main class="main-content detail-page">
         <div class="scrolling-container">
             <div class="model-viewer-area" id="model-viewer-area">
@@ -51,43 +42,20 @@
                 <p data-lang="zh-CN">深入探讨文物的艺术风格和工艺特点。例如雕刻技法、材质运用、纹饰寓意等，突出其艺术价值。</p>
                 <p data-lang="en-US" style="display:none;">Delve into the artistic style and craftsmanship of the artifact. For instance, carving techniques, material usage, and symbolic meanings of patterns, highlighting its artistic value.</p>
 
-                <section class="process-flow-section">
-                    <h2 class="section-title" data-lang="zh-CN">数字建模流程</h2>
-                    <h2 class="section-title" data-lang="en-US" style="display:none;">Digital Modeling Process</h2>
-                    <div class="card-stack-wrapper" id="card-stack-wrapper">
-                        <div class="flow-card" data-step="1">
-                            <h4 data-lang="zh-CN">1. 原始影像采集</h4>
-                            <h4 data-lang="en-US" style="display:none;">1. Raw Image Capture</h4>
-                            <img id="flow-image" src="" alt="原始影像" class="flow-visual">
-                        </div>
-                        <div class="flow-card" data-step="2">
-                            <h4 data-lang="zh-CN">2. 点云数据处理</h4>
-                            <h4 data-lang="en-US" style="display:none;">2. Point Cloud Processing</h4>
-                            <model-viewer id="flow-model-pointcloud" class="flow-visual" camera-controls></model-viewer>
-                        </div>
-                        <div class="flow-card" data-step="3">
-                            <h4 data-lang="zh-CN">3. 模型拓扑优化</h4>
-                            <h4 data-lang="en-US" style="display:none;">3. Model Optimization</h4>
-                            <model-viewer id="flow-model-notexture" class="flow-visual" camera-controls></model-viewer>
-                        </div>
-                        <div class="flow-card" data-step="4">
-                            <h4 data-lang="zh-CN">4. 纹理贴图渲染</h4>
-                            <h4 data-lang="en-US" style="display:none;">4. Texture Rendering</h4>
-                            <model-viewer id="flow-model-final" class="flow-visual" camera-controls></model-viewer>
-                        </div>
-                    </div>
-                </section>
-                
                 <a href="artifacts.html" class="back-button" data-lang="zh-CN">返回列表</a>
                 <a href="artifacts.html" class="back-button" data-lang="en-US" style="display:none;">Back to list</a>
             </div>
         </div>
     </main>
+
     <footer class="footer">
-        <p>&copy; 2025 古韵新境. All rights reserved.</p>
+        <p>&copy; 2025 Touch A History. All rights reserved.</p>
     </footer>
+
     <script src="js/app.js"></script>
+    <script src="js/components.js"></script>
     <script src="js/artifacts.js"></script>
+
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const artifactId = urlParams.get('id');
@@ -107,13 +75,6 @@
             artifactModelViewer.autoRotate = true;
             artifactModelViewer.removeAttribute('camera-controls');
 
-            // 填充流程图信息
-            document.getElementById('flow-image').src = artifact.image;
-            document.getElementById('flow-model-pointcloud').src = artifact.model;
-            document.getElementById('flow-model-notexture').src = artifact.model;
-            document.getElementById('flow-model-final').src = artifact.model;
-
-            // 监听按钮点击事件
             document.getElementById('enter-details-btn').addEventListener('click', enterDetails);
             document.getElementById('enter-details-btn-en').addEventListener('click', enterDetails);
             
@@ -124,37 +85,6 @@
                 artifactModelViewer.autoRotate = false;
             }
 
-            // 流程图卡片展开逻辑
-            const cardStackWrapper = document.getElementById('card-stack-wrapper');
-            let isExpanded = false;
-            cardStackWrapper.addEventListener('click', () => {
-                if (!isExpanded) {
-                    cardStackWrapper.classList.add('expanded');
-                    isExpanded = true;
-                }
-            });
-
-            // 控制模型渲染效果
-            const noTextureModel = document.getElementById('flow-model-notexture');
-            const pointCloudModel = document.getElementById('flow-model-pointcloud');
-            
-            // 当无贴图模型加载完成时，移除其纹理
-            noTextureModel.addEventListener('load', () => {
-                const materials = noTextureModel.model.materials;
-                if (materials && materials.length > 0) {
-                    for (let material of materials) {
-                        material.pbrMetallicRoughness.baseColorTexture.factor = null;
-                        material.pbrMetallicRoughness.baseColorFactor = [0.8, 0.8, 0.8, 1]; // 设置为灰色
-                    }
-                }
-            });
-            
-            // 当点云效果模型加载完成时，应用视觉效果
-            pointCloudModel.addEventListener('load', () => {
-                pointCloudModel.style.filter = 'sepia(1) blur(1px)';
-                pointCloudModel.style.opacity = '0.5';
-            });
-            
             // 初始化语言显示
             document.addEventListener('DOMContentLoaded', () => {
                 toggleLanguage();
@@ -175,5 +105,6 @@
             });
         }
     </script>
+
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>古韵新境 - 文物</title>
+    <title>- 文物 -</title>
     <link rel="stylesheet" href="styles/main.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,18 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <nav class="navbar">
-            <a href="index.html" class="logo">古韵新境</a>
-            <div class="nav-links">
-                <a href="index.html" data-lang="zh-CN">首页</a>
-                <a href="index.html" data-lang="en-US" style="display:none;">Home</a>
-                <a href="artifacts.html" data-lang="zh-CN">文物</a>
-                <a href="artifacts.html" data-lang="en-US" style="display:none;">Artifacts</a>
-            </div>
-            <button class="lang-toggle-btn" onclick="toggleLanguage()">中文/EN</button>
-        </nav>
-    </header>
+    <div id="header-placeholder"></div>
     <main class="main-content">
         <h2 class="page-title" data-lang="zh-CN">文物列表</h2>
         <h2 class="page-title" data-lang="en-US" style="display:none;">Artifacts List</h2>
@@ -31,9 +20,10 @@
         </div>
     </main>
     <footer class="footer">
-        <p>&copy; 2025 古韵新境. All rights reserved.</p>
+        <p>&copy; 2025 Touch A History. All rights reserved.</p>
     </footer>
     <script src="js/app.js"></script>
+    <script src="js/components.js"></script>
     <script src="js/artifacts.js"></script>
     <script>
         const listGrid = document.getElementById('artifact-list');

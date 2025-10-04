@@ -166,119 +166,169 @@
 }
 
 @media (max-width: 768px) {
-    /* ... 移动端样式 ... */
-}
-
-/* ========================================= */
-/* 新增：流程图样式               */
-/* ========================================= */
-.process-flow-section {
-    margin-top: 5rem;
-}
-
-.process-flow-section .section-title {
-    text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 3rem;
-}
-
-.card-stack-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 5%;
-    position: relative;
-    height: 60vh;
-    cursor: pointer;
-    transition: all 0.5s ease-out;
-}
-
-/* 卡片堆叠的默认状态 */
-.flow-card {
-    background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    padding: 2rem;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%) translateX(0);
-    width: 25%;
-    height: 80%;
-    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    z-index: 10;
-    will-change: transform, width;
-    opacity: 0;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-/* 第一张卡片初始显示 */
-.card-stack-wrapper[data-step="1"] {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-/* 堆叠效果：每个卡片向左偏移 */
-.flow-card[data-step="1"] { transform: translateY(-50%) translateX(0); z-index: 10; opacity: 1; pointer-events: auto; }
-.flow-card[data-step="2"] { transform: translateY(-50%) translateX(-15%); z-index: 9; opacity: 1; pointer-events: auto; }
-.flow-card[data-step="3"] { transform: translateY(-50%) translateX(-30%); z-index: 8; opacity: 1; pointer-events: auto; }
-.flow-card[data-step="4"] { transform: translateY(-50%) translateX(-45%); z-index: 7; opacity: 1; pointer-events: auto; }
-
-
-/* 展开效果：卡片从左向右排列 */
-.card-stack-wrapper.expanded .flow-card {
-    position: relative;
-    transform: none;
-    top: auto;
-    left: auto;
-    width: 22%;
-    margin: 0 1.5%;
-    opacity: 1;
-    pointer-events: auto;
-}
-
-/* 视觉内容（图片和模型） */
-.flow-visual {
-    width: 100%;
-    height: 75%;
-    object-fit: contain;
-    margin-top: 1.5rem;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-}
-
-.flow-card h4 {
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: 500;
-}
-
-/* ========================================= */
-/* 媒体查询 - 流程图                   */
-/* ========================================= */
-@media (max-width: 1024px) {
-    .card-stack-wrapper {
-        flex-direction: column;
+    .scrolling-container {
         height: auto;
-        padding-top: 5rem;
-        padding-bottom: 2rem;
+        overflow-y: visible;
     }
-
-    .flow-card {
+    .model-viewer-area {
+        height: 60vh;
         position: relative;
-        width: 80%;
-        margin-bottom: 2rem;
-        transform: none !important;
-        opacity: 1;
-        pointer-events: auto;
     }
-
-    .card-stack-wrapper.expanded .flow-card {
-        margin: 0 auto 2rem auto;
-        width: 80%;
+    .artifact-info {
+        margin-top: 2rem;
+        opacity: 1; /* 移动端默认显示 */
+    }
+    .artifact-name-overlay {
+        bottom: 5%;
+        left: 5%;
+    }
+    .artifact-name-overlay h1 {
+        font-size: 2rem;
+    }
+    .cta-button {
+        display: none; /* 移动端可隐藏或改为其他交互 */
     }
 }
+
+
+/* ========================================= */
+/* 3. 流程页（全屏）排版优化            */
+/* ========================================= */
+
+.full-process-page .main-content {
+    /* 移除 detail page 的 padding，让内容更宽 */
+    padding: 0; 
+    max-width: none;
+    margin-top: 0;
+}
+
+.full-process-page .page-title {
+    padding-top: 5rem;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto 1.5rem auto;
+}
+
+.full-process-page .intro-text {
+    font-size: 1.25rem;
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+.process-flow-container {
+    padding-bottom: 5rem;
+}
+
+/* ========================================= */
+/* 4. 新增：垂直交错流程布局样式            */
+/* ========================================= */
+
+.vertical-flow-wrapper {
+    max-width: 1200px;
+    margin: 5rem auto;
+    padding: 0 5%;
+}
+
+.flow-step {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 60vh;
+    padding: 4rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.flow-step:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.step-visual {
+    position: relative;
+    flex: 0 0 45%;
+    height: 50vh;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.step-content {
+    flex: 0 0 45%;
+    padding: 0 2rem;
+}
+
+/* 步骤编号样式 */
+.step-number {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    font-size: 8rem;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.05);
+    z-index: 0;
+    line-height: 1;
+}
+
+.step-visual-image, .flow-visual-model {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 1;
+    position: relative;
+    border-radius: 10px;
+}
+
+.step-content h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.step-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* 交错布局：文左图右 */
+.flow-step.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+/* 媒体查询：移动端/平板垂直堆叠 */
+@media (max-width: 992px) {
+    .flow-step, .flow-step.reverse-layout {
+        flex-direction: column;
+        min-height: auto;
+        padding: 3rem 0;
+    }
+
+    .step-visual, .step-content {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    
+    .step-visual {
+        height: 40vh;
+        margin-bottom: 2rem;
+    }
+    
+    .step-content {
+        padding: 0;
+    }
+
+    .step-number {
+        font-size: 6rem;
+        top: 0;
+        left: 0;
+    }
+}
+
