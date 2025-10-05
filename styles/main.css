@@ -51,10 +51,9 @@ h1, h2, h3, h4, h5, h6 {
 p {
     margin-bottom: 1em;
 }
-
+/* 头部动画增强 */
 .header {
     background-color: rgba(253, 248, 237, 0.9);
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
     padding: 1.2rem 2.5rem;
     position: fixed;
     top: 0;
@@ -62,8 +61,46 @@ p {
     z-index: 1000;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    transition: transform 0.5s ease-out;
+    /* 增加一个细微的阴影，使其浮动感更强 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* 链接动画和活动链接视觉增强 */
+.nav-links a {
+    /* 使用 box-shadow 模拟底部线条，更精致 */
+    position: relative;
+    padding-bottom: 5px;
+    color: var(--text-color);
+    margin-left: 2rem;
+    margin-right: 2rem;
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+
+.nav-links a:after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease-out;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+}
+
+.nav-links a:hover:after,
+.nav-links a.active-link:after {
+    width: 100%;
+}
+
+.nav-links a.active-link {
+    font-weight: 600; /* 突出活动链接 */
+}
+
 
 .navbar {
     display: flex;
@@ -79,28 +116,6 @@ p {
     color: var(--primary-color);
     text-decoration: none;
     letter-spacing: 1px;
-}
-
-.nav-links a {
-    color: var(--text-color);
-    margin-left: 2rem;
-    margin-right: 2rem;
-    font-weight: 500;
-    font-size: 1.05rem;
-    position: relative;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    display: block;
-    margin-top: 5px;
-    right: 0;
-    background: var(--secondary-color);
-    transition: width 0.3s ease;
-    -webkit-transition: width 0.3s ease;
 }
 
 .nav-links a:hover::after {
@@ -176,6 +191,27 @@ p {
     font-family: var(--font-body);
 }
 
+/* 英雄区文本动画 (可选) */
+.hero-section h1, .hero-section p, .hero-section .cta-button {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.hero-section h1 { animation-delay: 0.3s; }
+.hero-section p { animation-delay: 0.6s; }
+.hero-section .cta-button { animation-delay: 0.9s; }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .cta-button {
     display: inline-block;
     background-color: var(--secondary-color);
@@ -184,15 +220,18 @@ p {
     border-radius: 30px;
     text-decoration: none;
     font-weight: 600;
+    transform: translateY(0);
     transition: all 0.3s ease;
     font-size: 1.1rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .cta-button:hover {
-    background-color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+
+    transform: translateY(-2px); /* 细微的抬升动画 */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    background-color: var(--secondary-color);
+    opacity: 0.9;
 }
 
 .page-title {

@@ -16,12 +16,16 @@
 <body class="full-process-page">
     <div id="header-placeholder"></div>
     <main class="main-content process-flow-container">
+        <section class="hero-section">
+
         <h1 class="page-title" data-lang="zh-CN">文物数字化建模全流程</h1>
         <h1 class="page-title" data-lang="en-US" style="display:none;">The Complete Artifact Digital Modeling Process</h1>
 
         <p class="intro-text" data-lang="zh-CN">文物数字化是一项结合了摄影、计算机图形学和文物保护的复杂工程。以下流程图将揭示一件珍贵文物如何从物理实体，一步步转化为可在虚拟空间中永久保存和展示的 3D 模型。</p>
         <p class="intro-text" data-lang="en-US" style="display:none;">Artifact digitization is a complex project combining photography, computer graphics, and conservation science. The flowchart below reveals how a precious artifact transforms from a physical entity into a 3D model that can be permanently preserved and displayed in a virtual space.</p>
         
+        </section>
+
         <div class="vertical-flow-wrapper" id="vertical-flow-wrapper">
 
             <section class="flow-step step-1">
@@ -97,59 +101,65 @@
         // 请确保您的 js/artifacts.js 中有 ID 为 'tang-official' 的文物数据
         const processArtifact = artifacts.find(a => a.id === 'tang-official'); 
         
-        if (processArtifact) {
-            // 设置模型源
-            const modelSrc = processArtifact.model;
-            
-            const processModels = document.querySelectorAll('.flow-visual-model');
-            processModels.forEach(model => {
-                model.src = modelSrc;
-                model.autoRotate = true; 
-            });
+    if (processArtifact) {
+        // 设置模型源
+        const modelSrc = processArtifact.model;
+        const imageSrc = processArtifact.image;
 
-            // ===========================================
-            // 模型渲染效果逻辑：白模与点云效果 (保持一致)
-            // ===========================================
+        // 设置静态图片源
+        document.querySelector('.flow-visual-image').src = imageSrc;
+        
+        const processModels = document.querySelectorAll('.flow-visual-model');
+        processModels.forEach(model => {
+            model.src = modelSrc;
+            model.autoRotate = true; 
+            // 默认设置，用于步骤 4 (最终模型)
+            model.setAttribute('shadow-intensity', '1');
+        });
 
-            // 辅助函数：将模型材质设置为白模效果 (移除贴图)
-            function setModelToWhite(modelViewerElement) {
-                modelViewerElement.addEventListener('load', () => {
-                    const materials = modelViewerElement.model.materials;
-                    if (materials && materials.length > 0) {
-                        for (let material of materials) {
-                            if (material.pbrMetallicRoughness.baseColorTexture) {
-                                material.pbrMetallicRoughness.baseColorTexture.factor = null;
-                            }
-                            material.pbrMetallicRoughness.baseColorFactor = [0.9, 0.9, 0.9, 1]; // 浅灰色
-                            material.metallicFactor = 0.1; 
-                            material.roughnessFactor = 0.8; 
-                        }
+        // ===========================================
+        // 模型渲染效果逻辑：白模与点云效果
+        // ===========================================
+
+        // 辅助函数：将模型材质设置为白模效果 (移除贴图)
+        function setModelToWhite(modelViewerElement) {
+            // 使用 model-viewer 的 ready 事件确保模型已加载
+            modelViewerElement.addEventListener('load', () => {
+                const materials = modelViewerElement.model.materials;
+                if (materials && materials.length > 0) {
+                    for (let material of materials) {
+                        // 移除或禁用贴图
+                        material.pbrMetallicRoughness.baseColorTexture.factor = null;
+                        
+                        // 设置为浅灰色/白色
+                        material.pbrMetallicRoughness.baseColorFactor = [0.95, 0.95, 0.95, 1]; 
+                        
+                        // 增加粗糙度和减少金属感，模拟石膏白模
+                        material.metallicFactor = 0.0; 
+                        material.roughnessFactor = 0.9; 
                     }
-                }, { once: true });
-            }
-
-            // 2. 点云效果模型：先设置为白模，再应用复杂的CSS滤镜模拟点云
-            const pointCloudModel = document.getElementById('flow-model-pointcloud');
-            setModelToWhite(pointCloudModel);
-            pointCloudModel.addEventListener('load', () => {
-                pointCloudModel.style.filter = 'contrast(150%) brightness(150%) sepia(80%) hue-rotate(20deg) saturate(200%) blur(0.5px) drop-shadow(0 0 1px #fff) drop-shadow(0 0 3px #fff)';
-                pointCloudModel.style.opacity = '0.7'; 
+                }
             }, { once: true });
+        }
+
+        // 2. 点云效果模型：先设置为白模，再应用 CSS 滤镜模拟颗粒和高光
+        const pointCloudModel = document.getElementById('flow-model-pointcloud');
+        setModelToWhite(pointCloudModel);
+        pointCloudModel.addEventListener('load', () => {
+            // 使用 CSS 滤镜模拟点云的颗粒感、高对比度和发光效果
+            pointCloudModel.style.filter = 'contrast(180%) brightness(150%) blur(0.2px) drop-shadow(0 0 1px #fff)';
+            pointCloudModel.style.opacity = '0.8'; 
+        }, { once: true });
 
 
-            // 3. 无贴图模型：设置为白模
-            const noTextureModel = document.getElementById('flow-model-notexture');
-            setModelToWhite(noTextureModel);
+        // 3. 无贴图模型：设置为白模
+        const noTextureModel = document.getElementById('flow-model-notexture');
+        setModelToWhite(noTextureModel);
 
 
         } else {
-            document.querySelector('.main-content').innerHTML = `<h1 style="text-align:center; padding-top: 5rem;">未找到用于演示的默认文物数据。</h1>`;
+        document.querySelector('.main-content').innerHTML = `<h1 style="text-align:center; padding-top: 5rem;">未找到用于演示的默认文物数据。</h1>`;
         }
-
-        // 初始化语言显示
-        document.addEventListener('DOMContentLoaded', () => {
-            toggleLanguage();
-        });
     </script>
 </body>
 </html>
