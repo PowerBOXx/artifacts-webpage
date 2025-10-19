@@ -26,10 +26,17 @@ document.addEventListener('DOMContentLoaded', () => {
             setActiveLink(currentPage);
             
             // 3. 重新运行语言切换（因为 header 刚被加载进来）
-            // 确保在主页面上 language.js 已经加载
-            if (typeof toggleLanguage === 'function') {
-                toggleLanguage();
+            // 确保在主页面上 app.js 已经加载
+            if (typeof applyLanguage === 'function') {
+                // 只应用语言，不切换，因为此时 localStorage 中的语言偏好是正确的
+                const storedLang = localStorage.getItem('userLanguagePreference') || 'zh-CN';
+                applyLanguage(storedLang);
             }
+
+            // 4. 触发自定义事件，通知其他组件 header 已加载完成
+            const event = new CustomEvent('headerLoaded', { detail: { page: currentPage } });
+            document.dispatchEvent(event);
+
         })
         .catch(error => console.error("Error loading header component:", error));
 });

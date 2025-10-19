@@ -27,21 +27,10 @@
                 <button class="cta-button" id="enter-details-btn-en" data-lang="en-US" style="display:none;">View Details</button>
             </div>
             <div class="artifact-info">
-                <h2 data-lang="zh-CN">文物介绍</h2>
-                <h2 data-lang="en-US" style="display:none;">Artifact Introduction</h2>
+                <h2 id="artifact-name-zh" data-lang="zh-CN"></h2>
+                <h2 id="artifact-name-en" data-lang="en-US" style="display:none;"></h2>
                 <p id="artifact-desc-zh" data-lang="zh-CN"></p>
                 <p id="artifact-desc-en" data-lang="en-US" style="display:none;"></p>
-                
-                <h3 data-lang="zh-CN">历史背景</h3>
-                <h3 data-lang="en-US" style="display:none;">Historical Background</h3>
-                <p data-lang="zh-CN">此处添加关于文物更详细的历史背景信息。可以包括发现地点、时期意义、文化影响等，让参观者对文物有更全面的了解。</p>
-                <p data-lang="en-US" style="display:none;">Add more detailed historical background information about the artifact here. This could include its discovery location, significance of its era, cultural impact, and more, providing visitors with a comprehensive understanding.</p>
-
-                <h3 data-lang="zh-CN">艺术特色</h3>
-                <h3 data-lang="en-US" style="display:none;">Artistic Features</h3>
-                <p data-lang="zh-CN">深入探讨文物的艺术风格和工艺特点。例如雕刻技法、材质运用、纹饰寓意等，突出其艺术价值。</p>
-                <p data-lang="en-US" style="display:none;">Delve into the artistic style and craftsmanship of the artifact. For instance, carving techniques, material usage, and symbolic meanings of patterns, highlighting its artistic value.</p>
-
                 <a href="artifacts.html" class="back-button" data-lang="zh-CN">返回列表</a>
                 <a href="artifacts.html" class="back-button" data-lang="en-US" style="display:none;">Back to list</a>
             </div>
@@ -66,7 +55,7 @@
 
         if (artifact) {
             // 填充主文物信息
-            document.getElementById('page-title').textContent = `古韵新境 - ${artifact.zh_name}`;
+            document.getElementById('page-title').textContent = `Touch a History - ${artifact.zh_name}`;
             document.getElementById('artifact-name-zh').textContent = artifact.zh_name;
             document.getElementById('artifact-name-en').textContent = artifact.en_name;
             document.getElementById('artifact-desc-zh').textContent = artifact.zh_desc;

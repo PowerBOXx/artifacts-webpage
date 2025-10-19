@@ -14,7 +14,6 @@
 
 .scrolling-container {
     display: block;
-    min-height: 200vh;
 }
 
 .scrolled .scrolling-container {
@@ -329,6 +328,142 @@
         font-size: 6rem;
         top: 0;
         left: 0;
+    }
+}
+
+/* ========================================= */
+/* 交互式流程样式 (整合并优化)            */
+/* ========================================= */
+
+.interactive-flow-wrapper {
+    max-width: 1000px; /* 稍微加宽以适应内容 */
+    margin: 4rem auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem; /* 增加间距 */
+}
+
+/* 步骤指示器 */
+.step-indicators {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    gap: 1rem;
+    position: relative;
+}
+
+.step-indicators::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background-color: #e0e0e0; /* 使用中性色作为线条 */
+    z-index: 0;
+}
+
+.indicator {
+    width: 50px; /* 稍微加大 */
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--background-paper); /* 使用背景色 */
+    border: 2px solid var(--secondary-color); /* 使用次要色作为边框 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--secondary-color);
+    transition: all 0.3s ease;
+    z-index: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.indicator:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.indicator.active {
+    background-color: var(--primary-color); /* 使用主要色 */
+    border-color: var(--primary-color);
+    color: var(--background-paper);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(123, 63, 0, 0.3); /* 使用主要色的阴影 */
+}
+
+/* 模型与内容展示区 */
+.flow-display-area {
+    display: flex;
+    gap: 4rem; /* 增加间距 */
+    align-items: center;
+    width: 100%;
+}
+
+.model-container {
+    flex: 1;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flow-visual {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    border-radius: 10px; /* 与其他卡片保持一致 */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); /* 使用更柔和的阴影 */
+    background-color: var(--background-paper);
+}
+
+.content-container {
+    flex: 1;
+}
+
+.content-container h2 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.content-container p {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 992px) {
+    .flow-display-area {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    .model-container {
+        width: 100%;
+        order: 2; /* 在移动端，模型在下 */
+    }
+
+    .content-container {
+        width: 100%;
+        text-align: center;
+        order: 1; /* 在移动端，内容在上 */
+    }
+    
+    .content-container h2 {
+        font-size: 1.8rem;
     }
 }
 

@@ -11,155 +11,366 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 新增样式用于滑动效果 */
+        .steps-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .steps-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .step-item {
+            min-width: 100%;
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .model-container {
+            flex: 1;
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .flow-visual {
+            width: 100%;
+            height: 450px;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            background-color: var(--background-paper);
+            --poster-color: var(--background-paper);
+        }
+        
+        .content-container {
+            flex: 1;
+        }
+        
+        .content-container h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+        
+        .content-container p {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .step-item {
+                flex-direction: column;
+                gap: 2.5rem;
+            }
+            
+            .model-container {
+                width: 100%;
+                order: 2;
+            }
+            
+            .content-container {
+                width: 100%;
+                text-align: center;
+                order: 1;
+            }
+            
+            .content-container h2 {
+                font-size: 1.8rem;
+            }
+            
+            .flow-visual {
+                height: 350px;
+            }
+        }
+    </style>
 </head>
 
 <body class="full-process-page">
     <div id="header-placeholder"></div>
     <main class="main-content process-flow-container">
         <section class="hero-section">
-
-        <h1 class="page-title" data-lang="zh-CN">文物数字化建模全流程</h1>
-        <h1 class="page-title" data-lang="en-US" style="display:none;">The Complete Artifact Digital Modeling Process</h1>
-
-        <p class="intro-text" data-lang="zh-CN">文物数字化是一项结合了摄影、计算机图形学和文物保护的复杂工程。以下流程图将揭示一件珍贵文物如何从物理实体，一步步转化为可在虚拟空间中永久保存和展示的 3D 模型。</p>
-        <p class="intro-text" data-lang="en-US" style="display:none;">Artifact digitization is a complex project combining photography, computer graphics, and conservation science. The flowchart below reveals how a precious artifact transforms from a physical entity into a 3D model that can be permanently preserved and displayed in a virtual space.</p>
-        
+            <h1 class="page-title" data-lang="zh-CN">文物数字化建模全流程</h1>
+            <h1 class="page-title" data-lang="en-US" style="display:none;">The Complete Artifact Digital Modeling Process</h1>
+            <p class="intro-text" data-lang="zh-CN">文物数字化是一项结合了摄影、计算机图形学和文物保护的复杂工程。以下流程将揭示一件珍贵文物如何从物理实体，一步步转化为可在虚拟空间中永久保存和展示的 3D 模型。</p>
+            <p class="intro-text" data-lang="en-US" style="display:none;">Artifact digitization is a complex project combining photography, computer graphics, and conservation science. The process below reveals how a precious artifact transforms from a physical entity into a 3D model that can be permanently preserved and displayed in a virtual space.</p>
         </section>
 
-        <div class="vertical-flow-wrapper" id="vertical-flow-wrapper">
+        <!-- 新的交互式流程展示区 -->
+        <div class="interactive-flow-wrapper">
+            <!-- 步骤指示器 (可点击) -->
+            <div class="step-indicators">
+                <div class="indicator" data-step="1"><span>01</span></div>
+                <div class="indicator" data-step="2"><span>02</span></div>
+                <div class="indicator" data-step="3"><span>03</span></div>
+                <div class="indicator" data-step="4"><span>04</span></div>
+            </div>
 
-            <section class="flow-step step-1">
-                <div class="step-visual">
-                    <div class="step-number">01</div>
-                    <img src="assets/images/tang_official_thumb.jpg" alt="原始影像" class="flow-visual-image">
+            <!-- 步骤容器 -->
+            <div class="steps-container">
+                <div class="steps-wrapper" id="steps-wrapper">
+                    <!-- 步骤将通过JavaScript动态生成 -->
                 </div>
-                <div class="step-content">
-                    <h2 data-lang="zh-CN">原始影像采集</h2>
-                    <h2 data-lang="en-US" style="display:none;">Raw Image Capture</h2>
-                    <p data-lang="zh-CN">这是数字化的起点。通过结构光扫描、激光雷达或**摄影测量（Photogrammetry）**技术，对文物进行全方位、高精度的图像或点云数据采集。**数十万张**重叠拍摄的影像，构成了后续建模的基础。</p>
-                    <p data-lang="zh-CN">确保光源均匀，避免阴影，是保障最终模型色彩准确度的关键。任何细节上的疏漏都可能导致模型产生空洞或形变。</p>
-                    <p data-lang="en-US" style="display:none;">This is the starting point of digitization. High-precision images or point cloud data are captured from all angles using structured light scanning, LiDAR, or **Photogrammetry**. **Hundreds of thousands** of overlapping images form the basis for subsequent modeling.</p>
-                    <p data-lang="en-US" style="display:none;">Ensuring uniform lighting and avoiding shadows is crucial for accurate color representation. Any oversight in detail can lead to holes or deformation in the final model.</p>
-                </div>
-            </section>
-
-            <section class="flow-step step-2 reverse-layout">
-                <div class="step-visual">
-                    <div class="step-number">02</div>
-                    <model-viewer id="flow-model-pointcloud" class="flow-visual-model" camera-controls></model-viewer>
-                </div>
-                <div class="step-content">
-                    <h2 data-lang="zh-CN">点云数据处理与对齐</h2>
-                    <h2 data-lang="en-US" style="display:none;">Point Cloud Processing & Alignment</h2>
-                    <p data-lang="zh-CN">软件将海量照片计算转化为**点云数据**（Point Cloud）。每个点都带有三维坐标和色彩信息。此阶段需要进行**点云降噪**、去冗余和不同角度点云的**高精度对齐**，确保模型的几何结构准确无误。</p>
-                    <p data-lang="zh-CN">点云是文物最初的三维数字形态，虽然颗粒感强，但真实地反映了原始数据的采集密度和细节保留程度。</p>
-                    <p data-lang="en-US" style="display:none;">Software converts the massive photos into **Point Cloud data**. Each point contains 3D coordinates and color information. This stage involves **noise reduction**, redundancy removal, and **high-precision alignment** of point clouds from different angles to ensure geometric accuracy.</p>
-                    <p data-lang="en-US" style="display:none;">The point cloud is the artifact's initial 3D digital form; though grainy, it accurately reflects the capture density and detail preservation of the raw data.</p>
-                </div>
-            </section>
-
-            <section class="flow-step step-3">
-                <div class="step-visual">
-                    <div class="step-number">03</div>
-                    <model-viewer id="flow-model-notexture" class="flow-visual-model" camera-controls></model-viewer>
-                </div>
-                <div class="step-content">
-                    <h2 data-lang="zh-CN">模型拓扑优化与修补</h2>
-                    <h2 data-lang="en-US" style="display:none;">Model Optimization & Retopology</h2>
-                    <p data-lang="zh-CN">点云转化为**三角网格模型**后，需要进行**拓扑优化（Retopology）**。高面数的原始模型会被简化，以适应网页和移动端的流畅渲染。同时，人工修补扫描过程中产生的空洞和细微缺陷。</p>
-                    <p data-lang="zh-CN">此处的白模（无贴图）清晰展示了文物最基础的几何形态和网格结构。它是一个轻量化、结构完整的“骨架”。</p>
-                    <p data-lang="en-US" style="display:none;">After converting the point cloud into a **triangular mesh model**, **Retopology** is performed. The high-polygon original model is simplified for smooth rendering on web and mobile devices. Manual patching is also done to fix holes and defects from the scanning process.</p>
-                    <p data-lang="en-US" style="display:none;">The white model (no texture) clearly shows the artifact's basic geometric shape and mesh structure. It is a lightweight, structurally complete "skeleton."</p>
-                </div>
-            </section>
-
-            <section class="flow-step step-4 reverse-layout">
-                <div class="step-visual">
-                    <div class="step-number">04</div>
-                    <model-viewer id="flow-model-final" class="flow-visual-model" camera-controls></model-viewer>
-                </div>
-                <div class="step-content">
-                    <h2 data-lang="zh-CN">纹理贴图与最终渲染</h2>
-                    <h2 data-lang="en-US" style="display:none;">Texturing and Final Rendering</h2>
-                    <p data-lang="zh-CN">将高分辨率的色彩信息（照片纹理）**投影烘焙**到优化的网格模型上。同时，调整法线贴图、粗糙度贴图等，以重现文物的材质、反光和细节。最终导出为 **GLB/GLTF** 格式。</p>
-                    <p data-lang="zh-CN">这个最终模型是观众在网站上看到的，它结合了最精确的几何形状和最逼真的外观材质，实现了数字文物的高保真展示。</p>
-                    <p data-lang="en-US" style="display:none;">High-resolution color information (photo textures) is **projected and baked** onto the optimized mesh model. Normal maps and roughness maps are adjusted to reproduce the artifact's material, reflections, and details. The model is finally exported as **GLB/GLTF**.</p>
-                    <p data-lang="en-US" style="display:none;">This final model is what visitors see on the website, combining the most accurate geometry with the most realistic appearance for a high-fidelity digital artifact display.</p>
-                </div>
-            </section>
+            </div>
         </div>
-
     </main>
     <footer class="footer">
-        <p>&copy; 2025 古韵新境. All rights reserved.</p>
+        <p>&copy; 2025 Touch a History. All rights reserved.</p>
     </footer>
     <script src="js/app.js"></script>
     <script src="js/components.js"></script>
     <script src="js/artifacts.js"></script>
-    <script>
-        // 假设用于流程图展示的模型是唐代文官俑 (ID: tang-official)
-        // 请确保您的 js/artifacts.js 中有 ID 为 'tang-official' 的文物数据
-        const processArtifact = artifacts.find(a => a.id === 'tang-official'); 
-        
-    if (processArtifact) {
-        // 设置模型源
-        const modelSrc = processArtifact.model;
-        const imageSrc = processArtifact.image;
 
-        // 设置静态图片源
-        document.querySelector('.flow-visual-image').src = imageSrc;
+<script>
+    // 等待所有资源加载完成
+    window.addEventListener('load', () => {
+        console.log("页面所有资源加载完成");
         
-        const processModels = document.querySelectorAll('.flow-visual-model');
-        processModels.forEach(model => {
-            model.src = modelSrc;
-            model.autoRotate = true; 
-            // 默认设置，用于步骤 4 (最终模型)
-            model.setAttribute('shadow-intensity', '1');
+        // 确保model-viewer已加载
+        if (typeof customElements.get('model-viewer') === 'undefined') {
+            console.error("model-viewer组件未加载");
+            return;
+        }
+        
+        // 监听 'headerLoaded' 事件，这是所有页面初始化的起点
+        document.addEventListener('headerLoaded', initializeProcess);
+        
+        // 如果header已经加载，直接初始化
+        if (document.getElementById('header-placeholder').children.length > 0) {
+            initializeProcess();
+        }
+    });
+
+    function initializeProcess() {
+        console.log("Modeling process: Header loaded, initializing...");
+
+        // ==========================================================
+        // 1. 数据和状态定义
+        // ==========================================================
+        const processArtifact = artifacts.find(a => a.id === 'tang-official');
+        if (!processArtifact) {
+            document.querySelector('.main-content').innerHTML = `<h1 style="text-align:center; padding-top: 5rem;">未找到用于演示的默认文物数据。</h1>`;
+            return;
+        }
+
+        // 模型文件路径
+        const pointCloudModelSrc = 'models/tang_official_datacloud.glb';
+        const noTextureModelSrc = 'models/tang_official_none.glb';
+        const finalModelSrc = 'models/tang_official.glb';
+        
+        // 步骤数据
+        const stepsData = [
+            {
+                id: 1,
+                modelSrc: finalModelSrc, // 第一步使用最终模型
+                title: { 'zh-CN': '第一步：数据采集', 'en-US': 'Step 1: Data Capture' },
+                description: { 
+                    'zh-CN': [
+                        '一切始于对文物实体的精确记录。我们使用高分辨率相机阵列，通过摄影测量法从数百个角度捕捉影像，确保每一个细节都被收录。',
+                        '在受控的光照环境下拍摄，是保证最终模型色彩真实、无偏差的关键。'
+                    ], 
+                    'en-US': [
+                        'Everything begins with the precise recording of the physical artifact. We use a high-resolution camera array to capture images from hundreds of angles via Photogrammetry, ensuring every detail is recorded.',
+                        'Shooting in a controlled lighting environment is key to guaranteeing true-to-life, unbiased color in the final model.'
+                    ] 
+                }
+            },
+            {
+                id: 2,
+                modelSrc: pointCloudModelSrc, // 第二步使用点云模型
+                title: { 'zh-CN': '第二步：点云重建', 'en-US': 'Step 2: Point Cloud Reconstruction' },
+                description: { 
+                    'zh-CN': [
+                        '专业软件将数千张照片进行计算，生成数百万个三维坐标点，形成点云模型。这是文物在数字世界的最初形态。',
+                        '通过对齐和清理这些点云，我们构建出文物准确的几何骨架，为后续建模打下坚实基础。'
+                    ], 
+                    'en-US': [
+                        'Specialized software computes thousands of images to generate millions of 3D coordinate points, forming a Point Cloud Model. This is the artifact\'s first form in the digital world.',
+                        'By aligning and cleaning these point clouds, we build an accurate geometric skeleton of the artifact, laying a solid foundation for subsequent modeling.'
+                    ] 
+                }
+            },
+            {
+                id: 3,
+                modelSrc: noTextureModelSrc, // 第三步使用无纹理模型
+                title: { 'zh-CN': '第三步：拓扑优化', 'en-US': 'Step 3: Mesh Optimization' },
+                description: { 
+                    'zh-CN': [
+                        '将点云转化为连续的三角网格模型。此阶段的核心是拓扑重建，我们优化数百万个面片，创建一个既精确又轻量的"数字白模"。',
+                        '这个白模是模型的"骨架"，它确保了在各种设备上都能流畅交互，同时保留了所有关键的几何特征。'
+                    ], 
+                    'en-US': [
+                        'The point cloud is converted into a continuous triangular mesh model. The core of this stage is Retopology, where we optimize millions of faces to create a "digital white model" that is both accurate and lightweight.',
+                        'This white model is the "skeleton" of the model, ensuring smooth interaction on all devices while preserving all key geometric features.'
+                    ] 
+                }
+            },
+            {
+                id: 4,
+                modelSrc: finalModelSrc, // 第四步使用最终模型
+                title: { 'zh-CN': '第四步：纹理映射', 'en-US': 'Step 4: Texture Mapping' },
+                description: { 
+                    'zh-CN': [
+                        '最后，将原始照片的色彩信息烘焙到优化后的网格上，形成逼真的纹理贴图。我们还会生成法线和粗糙度贴图，以模拟真实的材质光影。',
+                        '最终，一个高保真、可交互的数字文物诞生了，它永久地保存了文物的形态、色彩与质感。'
+                    ], 
+                    'en-US': [
+                        'Finally, the color information from the original photos is baked onto the optimized mesh, creating realistic texture maps. We also generate normal and roughness maps to simulate real-world material and light.',
+                        'In the end, a high-fidelity, interactive digital artifact is born, permanently preserving the object\'s form, color, and texture.'
+                    ] 
+                }
+            }
+        ];
+
+        let currentStep = 1;
+        const currentLang = document.documentElement.lang || 'zh-CN';
+
+        // ==========================================================
+        // 2. DOM 元素获取
+        // ==========================================================
+        const stepsWrapper = document.getElementById('steps-wrapper');
+        const indicators = document.querySelectorAll('.indicator');
+
+        // ==========================================================
+        // 3. 初始化步骤
+        // ==========================================================
+        function initializeSteps() {
+            console.log("开始初始化步骤");
+            
+            // 清空现有内容
+            stepsWrapper.innerHTML = '';
+            
+            // 创建所有步骤
+            stepsData.forEach((step, index) => {
+                console.log(`创建步骤 ${step.id}: ${step.modelSrc}`);
+                
+                const stepItem = document.createElement('div');
+                stepItem.className = 'step-item';
+                stepItem.dataset.step = step.id;
+                
+                // 创建模型容器
+                const modelContainer = document.createElement('div');
+                modelContainer.className = 'model-container';
+                
+                // 创建模型查看器 - 参考 artifact_detail.html 的实现
+                const modelViewer = document.createElement('model-viewer');
+                modelViewer.className = 'flow-visual';
+                modelViewer.src = step.modelSrc;
+                modelViewer.setAttribute('shadow-intensity', '1');
+                modelViewer.setAttribute('ar-status', 'not-presenting');
+                modelViewer.setAttribute('ar', '');
+                modelViewer.setAttribute('camera-controls', '');
+                modelViewer.setAttribute('auto-rotate', '');
+                modelViewer.style.backgroundColor = 'var(--background-paper)';
+                
+                // 模型加载事件监听
+                modelViewer.addEventListener('load', () => {
+                    console.log(`模型加载成功: ${step.modelSrc}`);
+                });
+                
+                // 模型加载错误处理
+                modelViewer.addEventListener('error', (e) => {
+                    console.error(`模型加载失败: ${step.modelSrc}`, e);
+                    // 尝试加载最终模型作为后备
+                    if (step.modelSrc !== finalModelSrc) {
+                        console.log(`尝试加载后备模型: ${finalModelSrc}`);
+                        modelViewer.src = finalModelSrc;
+                    }
+                });
+                
+                modelContainer.appendChild(modelViewer);
+                
+                // 创建内容容器
+                const contentContainer = document.createElement('div');
+                contentContainer.className = 'content-container';
+                
+                const title = document.createElement('h2');
+                title.textContent = step.title[currentLang];
+                
+                const description = document.createElement('div');
+                description.innerHTML = step.description[currentLang].map(p => `<p>${p}</p>`).join('');
+                
+                contentContainer.appendChild(title);
+                contentContainer.appendChild(description);
+                
+                stepItem.appendChild(modelContainer);
+                stepItem.appendChild(contentContainer);
+                
+                stepsWrapper.appendChild(stepItem);
+            });
+            
+            console.log("所有步骤创建完成");
+        }
+
+        // ==========================================================
+        // 4. 更新步骤显示
+        // ==========================================================
+        function updateStepDisplay() {
+            // 更新滑动位置
+            const translateX = -(currentStep - 1) * 100;
+            stepsWrapper.style.transform = `translateX(${translateX}%)`;
+            
+            // 更新指示器状态
+            indicators.forEach(ind => {
+                ind.classList.toggle('active', parseInt(ind.dataset.step) === currentStep);
+            });
+        }
+
+        // ==========================================================
+        // 5. 更新语言
+        // ==========================================================
+        function updateLanguage() {
+            const lang = document.documentElement.lang || 'zh-CN';
+            
+            // 更新所有步骤的内容
+            const stepItems = document.querySelectorAll('.step-item');
+            stepItems.forEach((item, index) => {
+                const step = stepsData[index];
+                const title = item.querySelector('h2');
+                const description = item.querySelector('.content-container > div:last-child');
+                
+                title.textContent = step.title[lang];
+                description.innerHTML = step.description[lang].map(p => `<p>${p}</p>`).join('');
+            });
+        }
+
+        // ==========================================================
+        // 6. 事件监听
+        // ==========================================================
+        indicators.forEach(indicator => {
+            indicator.addEventListener('click', () => {
+                const targetStep = parseInt(indicator.dataset.step);
+                if (targetStep !== currentStep) {
+                    currentStep = targetStep;
+                    updateStepDisplay();
+                }
+            });
         });
 
-        // ===========================================
-        // 模型渲染效果逻辑：白模与点云效果
-        // ===========================================
+        // 监听语言切换
+        document.addEventListener('languageChanged', () => {
+            updateLanguage();
+        });
 
-        // 辅助函数：将模型材质设置为白模效果 (移除贴图)
-        function setModelToWhite(modelViewerElement) {
-            // 使用 model-viewer 的 ready 事件确保模型已加载
-            modelViewerElement.addEventListener('load', () => {
-                const materials = modelViewerElement.model.materials;
-                if (materials && materials.length > 0) {
-                    for (let material of materials) {
-                        // 移除或禁用贴图
-                        material.pbrMetallicRoughness.baseColorTexture.factor = null;
-                        
-                        // 设置为浅灰色/白色
-                        material.pbrMetallicRoughness.baseColorFactor = [0.95, 0.95, 0.95, 1]; 
-                        
-                        // 增加粗糙度和减少金属感，模拟石膏白模
-                        material.metallicFactor = 0.0; 
-                        material.roughnessFactor = 0.9; 
-                    }
-                }
-            }, { once: true });
-        }
+        // ==========================================================
+        // 7. 初始化
+        // ==========================================================
+        initializeSteps();
+        updateStepDisplay();
+    }
+</script>
 
-        // 2. 点云效果模型：先设置为白模，再应用 CSS 滤镜模拟颗粒和高光
-        const pointCloudModel = document.getElementById('flow-model-pointcloud');
-        setModelToWhite(pointCloudModel);
-        pointCloudModel.addEventListener('load', () => {
-            // 使用 CSS 滤镜模拟点云的颗粒感、高对比度和发光效果
-            pointCloudModel.style.filter = 'contrast(180%) brightness(150%) blur(0.2px) drop-shadow(0 0 1px #fff)';
-            pointCloudModel.style.opacity = '0.8'; 
-        }, { once: true });
-
-
-        // 3. 无贴图模型：设置为白模
-        const noTextureModel = document.getElementById('flow-model-notexture');
-        setModelToWhite(noTextureModel);
-
-
-        } else {
-        document.querySelector('.main-content').innerHTML = `<h1 style="text-align:center; padding-top: 5rem;">未找到用于演示的默认文物数据。</h1>`;
-        }
-    </script>
 </body>
 </html>

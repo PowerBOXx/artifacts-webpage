@@ -1,22 +1,22 @@
 // js/artifacts.js
 const artifacts = [
     {
-        id: 'bronze-vessel',
-        zh_name: '青铜器',
-        en_name: 'Bronze Ritual Vessel',
-        image: 'assets/images/bronze_vessel_thumb.jpg',
-        model: 'assets/3d_models/bronze_vessel.glb',
-        zh_desc: '这件精美的青铜器是商朝晚期的礼器，用于祭祀仪式。器身饰有饕餮纹，线条流畅，工艺精湛...',
-        en_desc: 'This exquisite bronze vessel is a ritual object from the late Shang dynasty, used for sacrificial ceremonies. The body is decorated with taotie patterns, featuring smooth lines and superb craftsmanship...'
+        id: 'bronze-flower-bird-basin',
+        zh_name: '青铜花鸟树盆',
+        en_name: 'Bronze Flower and Bird Tree Basin',
+        image: 'assets/images/bronze_basin_thumb.jpg',
+        model: 'models/fishpond.glb',
+        zh_desc: '战国时期青铜器，器身以浮雕工艺饰有花鸟树木图案。此盆为实用器皿，其纹饰反映了当时人们对自然景象的观察与艺术再现。',
+        en_desc: 'A bronze vessel from the Warring States period, the body is decorated with flower, bird, and tree patterns using relief carving. This basin was a practical utensil, and its decorations reflect the observation and artistic reproduction of natural scenes at that time.'
     },
     {
-        id: 'terracotta-warrior',
-        zh_name: '兵马俑',
-        en_name: 'Terracotta Warrior',
+        id: 'sancai-horse',
+        zh_name: '唐三彩马',
+        en_name: 'Tang Sancai Horse',
         image: 'assets/images/terracotta_warrior_thumb.jpg',
-        model: 'assets/3d_models/terracotta_warrior.glb',
-        zh_desc: '秦始皇兵马俑是世界第八大奇迹，这些陶制雕塑栩栩如生，展现了秦朝强大的军事实力...',
-        en_desc: 'The Terracotta Army is one of the Eight Wonders of the World. These lifelike pottery sculptures showcase the mighty military power of the Qin Dynasty...'
+        model: 'models/cheval.glb',
+        zh_desc: '唐代低温铅釉陶器，以黄、绿、白三色釉为主。马匹造型健硕，形态生动，是唐代墓葬中常见的随葬品，用于表现墓主人的身份与财富。',
+        en_desc: 'A low-temperature lead-glazed pottery from the Tang Dynasty, primarily featuring yellow, green, and white glazes. The horse is robustly shaped and vividly formed, a common burial item in Tang tombs used to represent the status and wealth of the deceased.'
     },
     {
         id: 'tang-official',
@@ -24,67 +24,70 @@ const artifacts = [
         en_name: 'Tang Dynasty Official Figurine',
         image: 'images/aa.png',
         model: 'models/tang_official.glb',
-        zh_desc: '这尊唐代文官俑出土于唐代墓葬，造型生动，服饰精美，展现了盛唐时期文官的服饰特点和精神风貌。',
-        en_desc: 'This Tang Dynasty official figurine was unearthed from a Tang dynasty tomb. Its vivid form and exquisite attire showcase the clothing characteristics and spiritual demeanor of officials during the prosperous Tang Dynasty.'
+        zh_desc: '唐代墓葬出土的陶质文官俑。其服饰与姿态遵循当时的礼制，是研究唐代官僚制度与服饰文化的实物资料。',
+        en_desc: 'A pottery official figurine unearthed from a Tang Dynasty tomb. Its attire and posture follow the ritual system of the time, serving as physical material for studying the bureaucratic system and dress culture of the Tang Dynasty.'
     },
-    // 新增文物 4
     {
-        id: 'jade-bi',
-        zh_name: '良渚文化玉璧',
-        en_name: 'Liangzhu Culture Jade Bi Disc',
-        image: 'assets/images/jade_bi_thumb.jpg', 
-        model: 'assets/3d_models/jade_bi.glb', 
-        zh_desc: '良渚文化时期的玉璧，距今约 5000 年。玉璧在古代被视为重要礼器和财富象征，体现了史前中国高度发达的玉器制作水平和宗教信仰。',
-        en_desc: 'A Jade Bi disc from the Liangzhu culture, dating back about 5,000 years. The Bi disc was a significant ritual object and a symbol of wealth in ancient times, reflecting the advanced jade craftsmanship and religious beliefs of prehistoric China.'
+        id: 'western-zhou-zhe-gong',
+        zh_name: '西周折觥',
+        en_name: 'Western Zhou Zhe Gong',
+        image: 'assets/images/western_zhou_gong_thumb.jpg',
+        model: 'models/lidded.glb',
+        zh_desc: '西周时期青铜酒器，有盖，盖前端为兽首，后端作鸟形。器身饰有夔龙纹、鸟纹等，是西周青铜礼器的典型器物。',
+        en_desc: 'A bronze wine vessel from the Western Zhou Dynasty, with a lid. The front of the lid is shaped like an animal head, and the back is shaped like a bird. The body is decorated with patterns like kui dragons and birds, a typical artifact of Western Zhou bronze ritual vessels.'
     },
-    // 新增文物 5
     {
-        id: 'famille-rose-vase',
-        zh_name: '粉彩九桃天球瓶',
-        en_name: 'Famille Rose Nine Peach Vase',
-        image: 'assets/images/famille_rose_vase_thumb.jpg', 
-        model: 'assets/3d_models/famille_rose_vase.glb', 
-        zh_desc: '清代乾隆年间的粉彩瓷器代表作。瓶身绘有九只仙桃，寓意长寿吉祥，色彩艳丽，绘画精细，代表了清代宫廷瓷器制作的巅峰。',
-        en_desc: 'A masterpiece of the Famille Rose porcelain from the Qianlong period of the Qing Dynasty. The vase features nine immortal peaches, symbolizing longevity and good fortune. Its vibrant colors and delicate painting represent the peak of Qing court porcelain production.'
+        id: 'headless-buddha-statue',
+        zh_name: '无头佛造像',
+        en_name: 'Headless Buddha Statue',
+        image: 'assets/images/headless_buddha_thumb.jpg',
+        model: 'models/fo.glb',
+        zh_desc: '石质佛教造像，头部已缺失。从残存的躯干部分可见其衣纹流畅，体态丰腴，具有唐代佛像的典型风格特征。',
+        en_desc: 'A stone Buddhist statue, the head is missing. The remaining torso shows smooth drapery lines and a plump body, which are typical stylistic features of Tang Dynasty Buddha statues.'
     },
-    // 新增文物 6
     {
-        id: 'gilt-bronze-buddha',
-        zh_name: '十六国时期鎏金铜佛',
-        en_name: 'Sixteen Kingdoms Gilt Bronze Buddha',
-        image: 'assets/images/gilt_bronze_buddha_thumb.jpg', 
-        model: 'assets/3d_models/gilt_bronze_buddha.glb', 
-        zh_desc: '这尊小巧的鎏金铜佛像制作于中国佛教兴盛的十六国时期。佛像线条简洁，金光闪烁，是早期佛教艺术“秀骨清像”风格的体现。',
-        en_desc: 'This small gilt bronze Buddha statue was made during the Sixteen Kingdoms period, when Buddhism flourished in China. The simple lines and gleaming gold reflect the "lean and graceful" style of early Buddhist art.'
+        id: 'buddha-statue',
+        zh_name: '佛造像',
+        en_name: 'Buddha Statue',
+        image: 'assets/images/buddha_statue_thumb.jpg',
+        model: 'models/cosmic.glb',
+        zh_desc: '石质佛教造像。佛像结跏趺坐，手结印相，面相庄严。整体雕刻技法娴熟，是古代佛教雕塑艺术的实物例证。',
+        en_desc: 'A stone Buddhist statue. The Buddha is seated in a lotus position with hands in a mudra, featuring a solemn facial expression. The overall carving technique is skillful, serving as a physical example of ancient Buddhist sculptural art.'
     },
-    // 新增文物 7
     {
-        id: 'oracle-bone',
-        zh_name: '甲骨文卜辞',
-        en_name: 'Oracle Bone Inscription',
-        image: 'assets/images/oracle_bone_thumb.jpg', 
-        model: 'assets/3d_models/oracle_bone.glb', 
-        zh_desc: '刻有卜辞的龟甲或兽骨，是商代王室用于占卜的文物，也是中国已知最早的成体系文字。其内容记录了商朝的政治、天文和祭祀活动。',
-        en_desc: 'Turtle shells or animal bones inscribed with divination texts, used by the Shang royal family for prophecy. They represent the earliest systematic writing system known in China, documenting Shang politics, astronomy, and sacrificial activities.'
+        id: 'tiger-bird-gong',
+        zh_name: '虎鸟兽纹觥',
+        en_name: 'Tiger and Bird Pattern Gong',
+        image: 'assets/images/tiger_bird_gong_thumb.jpg',
+        model: 'models/gong.glb',
+        zh_desc: '商代晚期青铜酒器。器身饰有虎、鸟等兽面纹，造型厚重，纹饰繁缛，是商代青铜礼器的重要组成部分。',
+        en_desc: 'A bronze wine vessel from the late Shang Dynasty. The body is decorated with animal mask patterns including tigers and birds. It has a heavy form and intricate decorations, an important component of Shang Dynasty bronze ritual vessels.'
     },
-    // 新增文物 8
     {
-        id: 'silk-painting',
-        zh_name: '马王堆 T 型帛画',
-        en_name: 'Mawangdui T-shaped Silk Painting',
-        image: 'assets/images/silk_painting_thumb.jpg', 
-        model: 'assets/3d_models/silk_painting.glb', 
-        zh_desc: '出土于西汉马王堆汉墓，T 形结构，描绘了天上、人间和地下三个世界。此画是研究汉代神话、宗教信仰和绘画技艺的稀有珍品。',
-        en_desc: 'Excavated from the Mawangdui Han Tomb of the Western Han Dynasty. Its T-shape depicts three realms: heaven, human world, and the underworld. It is a rare treasure for studying Han dynasty mythology, religious beliefs, and painting techniques.'
+        id: 'tang-palace-lady-figurine',
+        zh_name: '唐代宫女造像',
+        en_name: 'Tang Dynasty Palace Lady Figurine',
+        image: 'assets/images/tang_palace_lady_thumb.jpg',
+        model: 'models/nv.glb',
+        zh_desc: '唐代墓葬出土的陶质宫女俑。其体态丰腴，身着宫装，造型反映了唐代宫廷女性的形象与服饰特点。',
+        en_desc: 'A pottery palace lady figurine unearthed from a Tang Dynasty tomb. It has a plump figure and wears palace attire, its form reflecting the image and clothing characteristics of court women in the Tang Dynasty.'
     },
-    // 新增文物 9
     {
-        id: 'cizhou-pillow',
-        zh_name: '宋代磁州窑瓷枕',
-        en_name: 'Song Dynasty Cizhou Ware Porcelain Pillow',
-        image: 'assets/images/cizhou_pillow_thumb.jpg', 
-        model: 'assets/3d_models/cizhou_pillow.glb', 
-        zh_desc: '宋代磁州窑出产的瓷枕，造型简洁，装饰技法多样，常以黑色釉彩描绘生动的纹饰。瓷枕不仅是卧具，也是当时流行的工艺品。',
-        en_desc: 'A porcelain pillow produced by the Cizhou kiln during the Song Dynasty. It features a simple shape and diverse decorative techniques, often using black glaze to depict lively patterns. It was both a bedding item and a popular craft piece.'
+        id: 'bronze-jue',
+        zh_name: '青铜酒爵',
+        en_name: 'Bronze Jue',
+        image: 'assets/images/bronze_jue_thumb.jpg',
+        model: 'models/jue.glb',
+        zh_desc: '商代早期的青铜酒器。器型前有流，后有尾，中有柱，下有三足。是商代青铜礼器中基本的温酒或饮酒器具。',
+        en_desc: 'An early Shang Dynasty bronze wine vessel. The vessel has a spout at the front, a tail at the back, pillars in the middle, and three legs. It was a basic vessel for warming or drinking wine among Shang Dynasty bronze ritual objects.'
+    },
+    {
+        id: 'tang-court-lady-figurine',
+        zh_name: '唐代仕女造像',
+        en_name: 'Tang Dynasty Court Lady Figurine',
+        image: 'assets/images/tang_lady_thumb.jpg',
+        model: 'models/statuette.glb',
+        zh_desc: '唐代墓葬出土的陶质仕女俑。其面容圆润，体态丰腴，身着华丽服饰，是唐代社会审美风尚的体现。',
+        en_desc: 'A pottery court lady figurine unearthed from a Tang Dynasty tomb. It has a round face, a plump figure, and gorgeous attire, embodying the aesthetic trends of Tang Dynasty society.'
     }
 ];
