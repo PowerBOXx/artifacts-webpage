@@ -1,469 +1,525 @@
 /* ========================================= */
-/* 文物详情页样式                */
+/* 文物详情页样式                         */
+/* ========================================= */
+
+@import url('design-system.css');
+
+/* ========================================= */
+/* 页面状态控制                           */
 /* ========================================= */
 
 /* 初始状态：禁止垂直滚动 */
 .initial-state {
-    overflow-y: hidden;
+  overflow-y: hidden;
 }
 
 /* 滚动状态：启用垂直滚动 */
 .scrolled {
-    overflow-y: auto;
+  overflow-y: auto;
 }
 
 .scrolling-container {
-    display: block;
+  display: block;
 }
 
 .scrolled .scrolling-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding-top: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding-top: 50px;
 }
+
+/* ========================================= */
+/* 模型查看器区域                         */
+/* ========================================= */
 
 .model-viewer-area {
-    width: 100%;
-    height: 76vh;
-    transition: all 0.7s ease-in-out;
-    position: relative;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    background-color: var(--background-paper);
+  width: 100%;
+  height: 76vh;
+  transition: all var(--transition-slow);
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: var(--background-paper);
 }
 
-#enter-details-btn, #enter-details-btn-en {
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 15px 35px;
-    border-radius: 30px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    font-size: 1.1rem;
-    cursor: pointer;
-    z-index: 20;
-    background-color: var(--secondary-color);
-    color: var(--background-paper);
-    border: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+#enter-details-btn, 
+#enter-details-btn-en {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--spacing-md) var(--spacing-2xl);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--transition-normal);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  z-index: 20;
+  background-color: var(--secondary-color);
+  color: var(--background-paper);
+  border: none;
+  box-shadow: var(--shadow-md);
 }
 
-.scrolled #enter-details-btn, .scrolled #enter-details-btn-en {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
+.scrolled #enter-details-btn, 
+.scrolled #enter-details-btn-en {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
 }
 
 .scrolled .model-viewer-area {
-    width: 50%;
-    height: 80vh;
+  width: 50%;
+  height: 80vh;
 }
 
 .model-viewer-3d {
-    width: 100%;
-    height: 100%;
-    --poster-color: var(--background-paper);
-    background-color: var(--background-paper);
+  width: 100%;
+  height: 100%;
+  --poster-color: var(--background-paper);
+  background-color: var(--background-paper);
 }
 
+/* ========================================= */
+/* 文物名称覆盖层                         */
+/* ========================================= */
+
 .artifact-name-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    text-align: center;
-    z-index: 50;
-    pointer-events: none;
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  text-align: center;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity var(--transition-normal);
 }
 
 .scrolled .artifact-name-overlay {
-    opacity: 0;
+  opacity: 0;
 }
 
 .artifact-name-overlay h1 {
-    font-size: 4rem;
-    color: var(--primary-color);
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    margin: 0;
-    padding: 0;
-    line-height: 1.2;
+  font-size: var(--font-size-5xl);
+  color: var(--primary-color);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  margin: 0;
+  padding: 0;
+  line-height: var(--line-height-tight);
+  font-family: var(--font-heading);
 }
 
+/* ========================================= */
+/* 文物信息区域                           */
+/* ========================================= */
+
 .artifact-info {
-    padding: 3rem;
-    text-align: left;
-    background-color: var(--background-paper);
-    margin-top: 0;
-    position: relative;
-    box-sizing: border-box;
-    z-index: 5;
+  padding: var(--spacing-3xl);
+  text-align: left;
+  background-color: var(--background-paper);
+  margin-top: 0;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 5;
 }
 
 .scrolled .artifact-info {
-    flex-grow: 1;
-    margin-top: 0;
-    margin-left: 3rem;
+  flex-grow: 1;
+  margin-top: 0;
+  margin-left: var(--spacing-3xl);
 }
 
 .artifact-info h1 {
-    font-size: 2.8rem;
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    color: var(--primary-color);
+  font-size: var(--font-size-4xl);
+  margin-top: 0;
+  margin-bottom: var(--spacing-xl);
+  color: var(--primary-color);
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
 }
 
 .artifact-info p {
-    font-size: 1.15rem;
-    color: var(--text-color);
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-    max-width: 800px;
+  font-size: var(--font-size-lg);
+  color: var(--text-color);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-xl);
+  max-width: 800px;
 }
 
 .back-button {
-    display: inline-block;
-    margin-top: 2rem;
-    color: var(--secondary-color);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 10px 20px;
-    border: 1px solid var(--secondary-color);
-    border-radius: 25px;
-    transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: var(--spacing-2xl);
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
 }
 
 .back-button:hover {
-    background-color: var(--secondary-color);
-    color: var(--background-paper);
+  background-color: var(--secondary-color);
+  color: var(--background-paper);
 }
 
 /* ========================================= */
-/* 媒体查询                  */
-/* ========================================= */
-@media (max-width: 1024px) {
-    .scrolled .scrolling-container {
-        flex-direction: column;
-    }
-    .scrolled .model-viewer-area {
-        width: 100%;
-        height: 60vh;
-    }
-    .scrolled .artifact-info {
-        margin-left: 0;
-        margin-top: 2rem;
-    }
-    .artifact-name-overlay h1 {
-        font-size: 3rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .scrolling-container {
-        height: auto;
-        overflow-y: visible;
-    }
-    .model-viewer-area {
-        height: 60vh;
-        position: relative;
-    }
-    .artifact-info {
-        margin-top: 2rem;
-        opacity: 1; /* 移动端默认显示 */
-    }
-    .artifact-name-overlay {
-        bottom: 5%;
-        left: 5%;
-    }
-    .artifact-name-overlay h1 {
-        font-size: 2rem;
-    }
-    .cta-button {
-        display: none; /* 移动端可隐藏或改为其他交互 */
-    }
-}
-
-
-/* ========================================= */
-/* 3. 流程页（全屏）排版优化            */
+/* 流程页全屏样式                         */
 /* ========================================= */
 
 .full-process-page .main-content {
-    /* 移除 detail page 的 padding，让内容更宽 */
-    padding: 0; 
-    max-width: none;
-    margin-top: 0;
+  padding: 0;
+  max-width: none;
+  margin-top: 0;
 }
 
 .full-process-page .page-title {
-    padding-top: 5rem;
-    font-size: 3rem;
-    font-weight: 700;
-    text-align: center;
-    max-width: 1000px;
-    margin: 0 auto 1.5rem auto;
+  padding-top: var(--spacing-4xl);
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto var(--spacing-xl) auto;
 }
 
 .full-process-page .intro-text {
-    font-size: 1.25rem;
-    max-width: 900px;
-    margin: 0 auto 3rem auto;
-    text-align: center;
-    color: var(--secondary-color);
+  font-size: var(--font-size-xl);
+  max-width: 900px;
+  margin: 0 auto var(--spacing-3xl) auto;
+  text-align: center;
+  color: var(--secondary-color);
+  line-height: var(--line-height-relaxed);
 }
 
 .process-flow-container {
-    padding-bottom: 5rem;
+  padding-bottom: var(--spacing-4xl);
 }
 
 /* ========================================= */
-/* 4. 新增：垂直交错流程布局样式            */
+/* 垂直交错流程布局                       */
 /* ========================================= */
 
 .vertical-flow-wrapper {
-    max-width: 1200px;
-    margin: 5rem auto;
-    padding: 0 5%;
+  max-width: 1200px;
+  margin: var(--spacing-4xl) auto;
+  padding: 0 5%;
 }
 
 .flow-step {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 60vh;
-    padding: 4rem 0;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 60vh;
+  padding: var(--spacing-3xl) 0;
+  margin-bottom: var(--spacing-xl);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .flow-step:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .step-visual {
-    position: relative;
-    flex: 0 0 45%;
-    height: 50vh;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
+  position: relative;
+  flex: 0 0 45%;
+  height: 50vh;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
 }
 
 .step-content {
-    flex: 0 0 45%;
-    padding: 0 2rem;
+  flex: 0 0 45%;
+  padding: 0 var(--spacing-xl);
 }
 
 /* 步骤编号样式 */
 .step-number {
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    font-size: 8rem;
-    font-weight: 700;
-    color: rgba(0, 0, 0, 0.05);
-    z-index: 0;
-    line-height: 1;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-bold);
+  color: rgba(0, 0, 0, 0.05);
+  z-index: 0;
+  line-height: 1;
 }
 
-.step-visual-image, .flow-visual-model {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    z-index: 1;
-    position: relative;
-    border-radius: 10px;
+.step-visual-image, 
+.flow-visual-model {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+  position: relative;
+  border-radius: var(--radius-xl);
 }
 
 .step-content h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-top: 0;
-    margin-bottom: 1.5rem;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: var(--spacing-xl);
+  font-family: var(--font-heading);
 }
 
 .step-content p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 1rem;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-md);
 }
 
 /* 交错布局：文左图右 */
 .flow-step.reverse-layout {
-    flex-direction: row-reverse;
-}
-
-/* 媒体查询：移动端/平板垂直堆叠 */
-@media (max-width: 992px) {
-    .flow-step, .flow-step.reverse-layout {
-        flex-direction: column;
-        min-height: auto;
-        padding: 3rem 0;
-    }
-
-    .step-visual, .step-content {
-        flex: 0 0 100%;
-        width: 100%;
-    }
-    
-    .step-visual {
-        height: 40vh;
-        margin-bottom: 2rem;
-    }
-    
-    .step-content {
-        padding: 0;
-    }
-
-    .step-number {
-        font-size: 6rem;
-        top: 0;
-        left: 0;
-    }
+  flex-direction: row-reverse;
 }
 
 /* ========================================= */
-/* 交互式流程样式 (整合并优化)            */
+/* 交互式流程样式                         */
 /* ========================================= */
 
 .interactive-flow-wrapper {
-    max-width: 1000px; /* 稍微加宽以适应内容 */
-    margin: 4rem auto;
-    padding: 0 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem; /* 增加间距 */
+  max-width: 1000px;
+  margin: var(--spacing-3xl) auto;
+  padding: 0 var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3xl);
 }
 
 /* 步骤指示器 */
 .step-indicators {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 500px;
-    gap: 1rem;
-    position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  gap: var(--spacing-md);
+  position: relative;
 }
 
 .step-indicators::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 5%;
-    right: 5%;
-    height: 2px;
-    background-color: #e0e0e0; /* 使用中性色作为线条 */
-    z-index: 0;
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background-color: #e0e0e0;
+  z-index: 0;
 }
 
 .indicator {
-    width: 50px; /* 稍微加大 */
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--background-paper); /* 使用背景色 */
-    border: 2px solid var(--secondary-color); /* 使用次要色作为边框 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    color: var(--secondary-color);
-    transition: all 0.3s ease;
-    z-index: 1;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--background-paper);
+  border: 2px solid var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  color: var(--secondary-color);
+  transition: all var(--transition-normal);
+  z-index: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
 }
 
 .indicator:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
 }
 
 .indicator.active {
-    background-color: var(--primary-color); /* 使用主要色 */
-    border-color: var(--primary-color);
-    color: var(--background-paper);
-    transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(123, 63, 0, 0.3); /* 使用主要色的阴影 */
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--background-paper);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(123, 63, 0, 0.3);
 }
 
 /* 模型与内容展示区 */
 .flow-display-area {
-    display: flex;
-    gap: 4rem; /* 增加间距 */
-    align-items: center;
-    width: 100%;
+  display: flex;
+  gap: var(--spacing-3xl);
+  align-items: center;
+  width: 100%;
 }
 
 .model-container {
-    flex: 1;
-    min-height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex: 1;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .flow-visual {
-    width: 100%;
-    height: auto;
-    max-height: 450px;
-    border-radius: 10px; /* 与其他卡片保持一致 */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); /* 使用更柔和的阴影 */
-    background-color: var(--background-paper);
+  width: 100%;
+  height: auto;
+  max-height: 450px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  background-color: var(--background-paper);
 }
 
 .content-container {
-    flex: 1;
+  flex: 1;
 }
 
 .content-container h2 {
-    font-family: var(--font-heading);
-    font-size: 2.2rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-top: 0;
-    margin-bottom: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: var(--spacing-xl);
 }
 
 .content-container p {
-    font-family: var(--font-body);
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--text-color);
-    margin-bottom: 1rem;
+  font-family: var(--font-body);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-color);
+  margin-bottom: var(--spacing-md);
 }
 
-/* 响应式设计 */
+/* ========================================= */
+/* 响应式设计                             */
+/* ========================================= */
+
+@media (max-width: 1024px) {
+  .scrolled .scrolling-container {
+    flex-direction: column;
+  }
+  
+  .scrolled .model-viewer-area {
+    width: 100%;
+    height: 60vh;
+  }
+  
+  .scrolled .artifact-info {
+    margin-left: 0;
+    margin-top: var(--spacing-xl);
+  }
+  
+  .artifact-name-overlay h1 {
+    font-size: var(--font-size-4xl);
+  }
+}
+
 @media (max-width: 992px) {
-    .flow-display-area {
-        flex-direction: column;
-        gap: 2.5rem;
-    }
+  .flow-step, 
+  .flow-step.reverse-layout {
+    flex-direction: column;
+    min-height: auto;
+    padding: var(--spacing-3xl) 0;
+  }
 
-    .model-container {
-        width: 100%;
-        order: 2; /* 在移动端，模型在下 */
-    }
+  .step-visual, 
+  .step-content {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+  
+  .step-visual {
+    height: 40vh;
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .step-content {
+    padding: 0;
+  }
 
-    .content-container {
-        width: 100%;
-        text-align: center;
-        order: 1; /* 在移动端，内容在上 */
-    }
-    
-    .content-container h2 {
-        font-size: 1.8rem;
-    }
+  .step-number {
+    font-size: var(--font-size-5xl);
+    top: 0;
+    left: 0;
+  }
+  
+  .flow-display-area {
+    flex-direction: column;
+    gap: var(--spacing-xl);
+  }
+
+  .model-container {
+    width: 100%;
+    order: 2;
+  }
+
+  .content-container {
+    width: 100%;
+    text-align: center;
+    order: 1;
+  }
+  
+  .content-container h2 {
+    font-size: var(--font-size-2xl);
+  }
 }
 
+@media (max-width: 768px) {
+  .scrolling-container {
+    height: auto;
+    overflow-y: visible;
+  }
+  
+  .model-viewer-area {
+    height: 60vh;
+    position: relative;
+  }
+  
+  .artifact-info {
+    margin-top: var(--spacing-xl);
+    opacity: 1;
+  }
+  
+  .artifact-name-overlay {
+    bottom: 5%;
+    left: 5%;
+  }
+  
+  .artifact-name-overlay h1 {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .cta-button {
+    display: none;
+  }
+  
+  .artifact-info h1 {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .artifact-info p {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 640px) {
+  .artifact-info {
+    padding: var(--spacing-xl);
+  }
+  
+  .artifact-name-overlay h1 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .full-process-page .page-title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .full-process-page .intro-text {
+    font-size: var(--font-size-lg);
+  }
+}

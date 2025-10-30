@@ -1,0 +1,1355 @@
+/* ========================================= */
+/* 设计系统 - 全局变量与工具类            */
+/* ========================================= */
+
+:root {
+  /* 颜色系统 */
+  --primary-color: #7B3F00;
+  --primary-light: #9B5F00;
+  --primary-dark: #5B2F00;
+  --secondary-color: #A0522D;
+  --secondary-light: #C0724D;
+  --secondary-dark: #80321D;
+  --accent-color: #DAA520;
+  --text-color: #4A4A4A;
+  --text-light: #888888;
+  --text-lighter: #BBBBBB;
+  --background-paper: #FDF8ED;
+  --background-light: #FFFFFF;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --border-light: rgba(0, 0, 0, 0.05);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-light: rgba(0, 0, 0, 0.05);
+
+  /* 间距系统 */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  --spacing-4xl: 6rem;
+
+  /* 字体大小系统 */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+
+  /* 字体权重 */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 行高 */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* 阴影系统 */
+  --shadow-sm: 0 1px 2px 0 var(--shadow-light);
+  --shadow-md: 0 4px 6px -1px var(--shadow-color);
+  --shadow-lg: 0 10px 15px -3px var(--shadow-color);
+  --shadow-xl: 0 20px 25px -5px var(--shadow-color);
+  --shadow-2xl: 0 25px 50px -12px var(--shadow-color);
+
+  /* 圆角系统 */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* 过渡动画 */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+
+  /* 断点系统 */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* 字体系统 */
+  --font-serif: 'STKaiti', 'KaiTi', 'SimSun', serif;
+  --font-sans-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Microsoft YaHei', sans-serif;
+  --font-heading: 'Noto Serif SC', 'Source Han Serif SC', serif;
+  --font-body: 'Noto Serif SC', 'Source Han Serif SC', serif;
+}
+
+/* ========================================= */
+/* 基础重置与全局样式                     */
+/* ========================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--text-color);
+  background-color: var(--background-paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================= */
+/* 通用工具类                             */
+/* ========================================= */
+
+/* 布局 */
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* 间距 */
+.p-xs { padding: var(--spacing-xs); }
+.p-sm { padding: var(--spacing-sm); }
+.p-md { padding: var(--spacing-md); }
+.p-lg { padding: var(--spacing-lg); }
+.p-xl { padding: var(--spacing-xl); }
+.p-2xl { padding: var(--spacing-2xl); }
+.p-3xl { padding: var(--spacing-3xl); }
+
+.pt-xs { padding-top: var(--spacing-xs); }
+.pt-sm { padding-top: var(--spacing-sm); }
+.pt-md { padding-top: var(--spacing-md); }
+.pt-lg { padding-top: var(--spacing-lg); }
+.pt-xl { padding-top: var(--spacing-xl); }
+.pt-2xl { padding-top: var(--spacing-2xl); }
+.pt-3xl { padding-top: var(--spacing-3xl); }
+
+.pb-xs { padding-bottom: var(--spacing-xs); }
+.pb-sm { padding-bottom: var(--spacing-sm); }
+.pb-md { padding-bottom: var(--spacing-md); }
+.pb-lg { padding-bottom: var(--spacing-lg); }
+.pb-xl { padding-bottom: var(--spacing-xl); }
+.pb-2xl { padding-bottom: var(--spacing-2xl); }
+.pb-3xl { padding-bottom: var(--spacing-3xl); }
+
+.px-xs { padding-left: var(--spacing-xs); padding-right: var(--spacing-xs); }
+.px-sm { padding-left: var(--spacing-sm); padding-right: var(--spacing-sm); }
+.px-md { padding-left: var(--spacing-md); padding-right: var(--spacing-md); }
+.px-lg { padding-left: var(--spacing-lg); padding-right: var(--spacing-lg); }
+.px-xl { padding-left: var(--spacing-xl); padding-right: var(--spacing-xl); }
+.px-2xl { padding-left: var(--spacing-2xl); padding-right: var(--spacing-2xl); }
+
+.py-xs { padding-top: var(--spacing-xs); padding-bottom: var(--spacing-xs); }
+.py-sm { padding-top: var(--spacing-sm); padding-bottom: var(--spacing-sm); }
+.py-md { padding-top: var(--spacing-md); padding-bottom: var(--spacing-md); }
+.py-lg { padding-top: var(--spacing-lg); padding-bottom: var(--spacing-lg); }
+.py-xl { padding-top: var(--spacing-xl); padding-bottom: var(--spacing-xl); }
+.py-2xl { padding-top: var(--spacing-2xl); padding-bottom: var(--spacing-2xl); }
+
+.m-xs { margin: var(--spacing-xs); }
+.m-sm { margin: var(--spacing-sm); }
+.m-md { margin: var(--spacing-md); }
+.m-lg { margin: var(--spacing-lg); }
+.m-xl { margin: var(--spacing-xl); }
+.m-2xl { margin: var(--spacing-2xl); }
+.m-3xl { margin: var(--spacing-3xl); }
+
+.mt-xs { margin-top: var(--spacing-xs); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+.mt-2xl { margin-top: var(--spacing-2xl); }
+.mt-3xl { margin-top: var(--spacing-3xl); }
+
+.mb-xs { margin-bottom: var(--spacing-xs); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+.mb-2xl { margin-bottom: var(--spacing-2xl); }
+.mb-3xl { margin-bottom: var(--spacing-3xl); }
+
+.mx-xs { margin-left: var(--spacing-xs); margin-right: var(--spacing-xs); }
+.mx-sm { margin-left: var(--spacing-sm); margin-right: var(--spacing-sm); }
+.mx-md { margin-left: var(--spacing-md); margin-right: var(--spacing-md); }
+.mx-lg { margin-left: var(--spacing-lg); margin-right: var(--spacing-lg); }
+.mx-xl { margin-left: var(--spacing-xl); margin-right: var(--spacing-xl); }
+.mx-2xl { margin-left: var(--spacing-2xl); margin-right: var(--spacing-2xl); }
+
+.my-xs { margin-top: var(--spacing-xs); margin-bottom: var(--spacing-xs); }
+.my-sm { margin-top: var(--spacing-sm); margin-bottom: var(--spacing-sm); }
+.my-md { margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); }
+.my-lg { margin-top: var(--spacing-lg); margin-bottom: var(--spacing-lg); }
+.my-xl { margin-top: var(--spacing-xl); margin-bottom: var(--spacing-xl); }
+.my-2xl { margin-top: var(--spacing-2xl); margin-bottom: var(--spacing-2xl); }
+
+/* 字体 */
+.text-xs { font-size: var(--font-size-xs); }
+.text-sm { font-size: var(--font-size-sm); }
+.text-base { font-size: var(--font-size-base); }
+.text-lg { font-size: var(--font-size-lg); }
+.text-xl { font-size: var(--font-size-xl); }
+.text-2xl { font-size: var(--font-size-2xl); }
+.text-3xl { font-size: var(--font-size-3xl); }
+.text-4xl { font-size: var(--font-size-4xl); }
+.text-5xl { font-size: var(--font-size-5xl); }
+.text-6xl { font-size: var(--font-size-6xl); }
+
+.font-light { font-weight: var(--font-weight-light); }
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+.leading-tight { line-height: var(--line-height-tight); }
+.leading-normal { line-height: var(--line-height-normal); }
+.leading-relaxed { line-height: var(--line-height-relaxed); }
+
+/* 颜色 */
+.text-primary { color: var(--primary-color); }
+.text-secondary { color: var(--secondary-color); }
+.text-accent { color: var(--accent-color); }
+.text-light { color: var(--text-light); }
+.text-lighter { color: var(--text-lighter); }
+
+.bg-primary { background-color: var(--primary-color); }
+.bg-secondary { background-color: var(--secondary-color); }
+.bg-accent { background-color: var(--accent-color); }
+.bg-paper { background-color: var(--background-paper); }
+.bg-light { background-color: var(--background-light); }
+
+/* 边框 */
+.border { border: 1px solid var(--border-color); }
+.border-light { border: 1px solid var(--border-light); }
+.border-t { border-top: 1px solid var(--border-color); }
+.border-b { border-bottom: 1px solid var(--border-color); }
+.border-l { border-left: 1px solid var(--border-color); }
+.border-r { border-right: 1px solid var(--border-color); }
+
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-2xl { border-radius: var(--radius-2xl); }
+.rounded-3xl { border-radius: var(--radius-3xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* 阴影 */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+.shadow-2xl { box-shadow: var(--shadow-2xl); }
+
+/* 过渡动画 */
+.transition-fast { transition: all var(--transition-fast); }
+.transition-normal { transition: all var(--transition-normal); }
+.transition-slow { transition: all var(--transition-slow); }
+
+/* 显示 */
+.hidden { display: none; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+.inline { display: inline; }
+.grid { display: grid; }
+
+/* 位置 */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+
+/* 宽高 */
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.w-auto { width: auto; }
+.h-auto { height: auto; }
+
+/* 溢出 */
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-scroll { overflow: scroll; }
+
+/* ========================================= */
+/* 组件样式                               */
+/* ========================================= */
+
+/* 卡片组件 */
+.card {
+  background-color: var(--background-paper);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 按钮组件 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  font-family: var(--font-body);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: var(--secondary-color);
+  color: var(--background-paper);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background-color: var(--secondary-color);
+  color: var(--background-paper);
+}
+
+.btn-lg {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+}
+
+.btn-sm {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+/* 输入框组件 */
+.input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.1);
+}
+
+/* 加载指示器 */
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  color: var(--text-light);
+}
+
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--border-color);
+  border-top: 2px solid var(--secondary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: var(--spacing-sm);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ========================================= */
+/* 头部导航                               */
+/* ========================================= */
+
+.header {
+  background-color: rgba(253, 248, 237, 0.9);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-2xl);
+  color: var(--primary-color);
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-family: var(--font-heading);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  position: relative;
+  padding: var(--spacing-sm) 0;
+  color: var(--text-color);
+  margin: 0 var(--spacing-lg);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-lg);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: var(--primary-color);
+  transition: width var(--transition-normal), left var(--transition-normal);
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active-link::after {
+  width: 100%;
+  left: 0;
+}
+
+.nav-links a.active-link {
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary-color);
+}
+
+.lang-toggle-btn {
+  background-color: transparent;
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--radius-full);
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  color: var(--secondary-color);
+  transition: all var(--transition-normal);
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-medium);
+}
+
+.lang-toggle-btn:hover {
+  background-color: var(--secondary-color);
+  color: var(--background-paper);
+}
+
+/* ========================================= */
+/* 主要内容区域                           */
+/* ========================================= */
+
+.main-content {
+  max-width: 1300px;
+  margin: 7rem auto 0;
+  padding: 0 var(--spacing-lg);
+  box-sizing: border-box;
+}
+
+/* ========================================= */
+/* 英雄区域                               */
+/* ========================================= */
+
+.hero-section {
+  text-align: center;
+  padding: var(--spacing-4xl) 0;
+  background: url('assets/images/abstract_chinese_pattern.png') no-repeat center center / cover;
+  border-radius: var(--radius-3xl);
+  margin-bottom: var(--spacing-3xl);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(253, 248, 237, 0.7);
+  z-index: 1;
+}
+
+.hero-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-section h1 {
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xl);
+  color: var(--primary-color);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-heading);
+}
+
+.hero-section p {
+  font-size: var(--font-size-xl);
+  color: var(--text-color);
+  max-width: 900px;
+  margin: 0 auto var(--spacing-2xl);
+  font-family: var(--font-body);
+  line-height: var(--line-height-relaxed);
+}
+
+/* 英雄区文本动画 */
+.hero-section h1, 
+.hero-section p, 
+.hero-section .cta-button {
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.hero-section h1 { animation-delay: 0.3s; }
+.hero-section p { animation-delay: 0.6s; }
+.hero-section .cta-button { animation-delay: 0.9s; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: var(--background-paper);
+    padding: 15px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* ========================================= */
+/* 页面标题                               */
+/* ========================================= */
+
+.page-title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-3xl);
+  text-align: center;
+  color: var(--primary-color);
+  font-family: var(--font-heading);
+}
+
+/* ========================================= */
+/* 文物列表网格                           */
+/* ========================================= */
+
+.artifact-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-2xl);
+}
+
+.artifact-card {
+  background-color: var(--background-paper);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.artifact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.artifact-thumb {
+  width: 100%;
+  max-height: 250px;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-xl);
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+}
+
+.artifact-title {
+  padding: 0 var(--spacing-md);
+  margin: 0;
+  font-size: var(--font-size-xl);
+  color: var(--primary-color);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  font-family: var(--font-heading);
+}
+
+/* ========================================= */
+/* 文物详情页样式                         */
+/* ========================================= */
+
+/* 页面状态控制 */
+.initial-state {
+  overflow-y: hidden;
+}
+
+.scrolled {
+  overflow-y: auto;
+}
+
+.scrolling-container {
+  display: block;
+}
+
+.scrolled .scrolling-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding-top: 50px;
+}
+
+/* 模型查看器区域 */
+.model-viewer-area {
+  width: 100%;
+  height: 76vh;
+  transition: all var(--transition-slow);
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: var(--background-paper);
+}
+
+#enter-details-btn, 
+#enter-details-btn-en {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--spacing-md) var(--spacing-2xl);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--transition-normal);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  z-index: 20;
+  background-color: var(--secondary-color);
+  color: var(--background-paper);
+  border: none;
+  box-shadow: var(--shadow-md);
+}
+
+.scrolled #enter-details-btn, 
+.scrolled #enter-details-btn-en {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.scrolled .model-viewer-area {
+  width: 50%;
+  height: 80vh;
+}
+
+.model-viewer-3d {
+  width: 100%;
+  height: 100%;
+  --poster-color: var(--background-paper);
+  background-color: var(--background-paper);
+}
+
+/* 文物名称覆盖层 */
+.artifact-name-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  text-align: center;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity var(--transition-normal);
+}
+
+.scrolled .artifact-name-overlay {
+  opacity: 0;
+}
+
+.artifact-name-overlay h1 {
+  font-size: var(--font-size-5xl);
+  color: var(--primary-color);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  margin: 0;
+  padding: 0;
+  line-height: var(--line-height-tight);
+  font-family: var(--font-heading);
+}
+
+/* 文物信息区域 */
+.artifact-info {
+  padding: var(--spacing-3xl);
+  text-align: left;
+  background-color: var(--background-paper);
+  margin-top: 0;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+.scrolled .artifact-info {
+  flex-grow: 1;
+  margin-top: 0;
+  margin-left: var(--spacing-3xl);
+}
+
+.artifact-info h1 {
+  font-size: var(--font-size-4xl);
+  margin-top: 0;
+  margin-bottom: var(--spacing-xl);
+  color: var(--primary-color);
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+}
+
+.artifact-info p {
+  font-size: var(--font-size-lg);
+  color: var(--text-color);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-xl);
+  max-width: 800px;
+}
+
+.back-button {
+  display: inline-block;
+  margin-top: var(--spacing-2xl);
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
+}
+
+.back-button:hover {
+  background-color: var(--secondary-color);
+  color: var(--background-paper);
+}
+
+/* ========================================= */
+/* 流程页全屏样式                         */
+/* ========================================= */
+
+.full-process-page .main-content {
+  padding: 0;
+  max-width: none;
+  margin-top: 0;
+}
+
+.full-process-page .page-title {
+  padding-top: var(--spacing-4xl);
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto var(--spacing-xl) auto;
+}
+
+.full-process-page .intro-text {
+  font-size: var(--font-size-xl);
+  max-width: 900px;
+  margin: 0 auto var(--spacing-3xl) auto;
+  text-align: center;
+  color: var(--secondary-color);
+  line-height: var(--line-height-relaxed);
+}
+
+.process-flow-container {
+  padding-bottom: var(--spacing-4xl);
+}
+
+/* ========================================= */
+/* 垂直交错流程布局                       */
+/* ========================================= */
+
+.vertical-flow-wrapper {
+  max-width: 1200px;
+  margin: var(--spacing-4xl) auto;
+  padding: 0 5%;
+}
+
+.flow-step {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 60vh;
+  padding: var(--spacing-3xl) 0;
+  margin-bottom: var(--spacing-xl);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.flow-step:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.step-visual {
+  position: relative;
+  flex: 0 0 45%;
+  height: 50vh;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.step-content {
+  flex: 0 0 45%;
+  padding: 0 var(--spacing-xl);
+}
+
+/* 步骤编号样式 */
+.step-number {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-bold);
+  color: rgba(0, 0, 0, 0.05);
+  z-index: 0;
+  line-height: 1;
+}
+
+.step-visual-image, 
+.flow-visual-model {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+  position: relative;
+  border-radius: var(--radius-xl);
+}
+
+.step-content h2 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: var(--spacing-xl);
+  font-family: var(--font-heading);
+}
+
+.step-content p {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-md);
+}
+
+/* 交错布局：文左图右 */
+.flow-step.reverse-layout {
+  flex-direction: row-reverse;
+}
+
+/* ========================================= */
+/* 交互式流程样式                         */
+/* ========================================= */
+
+.interactive-flow-wrapper {
+  max-width: 1000px;
+  margin: var(--spacing-3xl) auto;
+  padding: 0 var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3xl);
+}
+
+/* 步骤指示器 */
+.step-indicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  gap: var(--spacing-md);
+  position: relative;
+}
+
+.step-indicators::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background-color: #e0e0e0;
+  z-index: 0;
+}
+
+.indicator {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--background-paper);
+  border: 2px solid var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  color: var(--secondary-color);
+  transition: all var(--transition-normal);
+  z-index: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.indicator:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+.indicator.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--background-paper);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(123, 63, 0, 0.3);
+}
+
+/* 模型与内容展示区 */
+.flow-display-area {
+  display: flex;
+  gap: var(--spacing-3xl);
+  align-items: center;
+  width: 100%;
+}
+
+.model-container {
+  flex: 1;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flow-visual {
+  width: 100%;
+  height: auto;
+  max-height: 450px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  background-color: var(--background-paper);
+}
+
+.content-container {
+  flex: 1;
+}
+
+.content-container h2 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: var(--spacing-xl);
+}
+
+.content-container p {
+  font-family: var(--font-body);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-color);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ========================================= */
+/* 页脚                                   */
+/* ========================================= */
+
+.footer {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  font-size: var(--font-size-sm);
+  color: var(--text-light);
+  background-color: var(--background-paper);
+  margin-top: var(--spacing-4xl);
+  border-top: 1px solid var(--border-light);
+}
+
+/* ========================================= */
+/* 响应式设计                             */
+/* ========================================= */
+
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 0 var(--spacing-md);
+  }
+
+  .hero-section h1 {
+    font-size: var(--font-size-5xl);
+  }
+
+  .hero-section p {
+    font-size: var(--font-size-lg);
+  }
+
+  .artifact-list-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+  }
+  
+  .scrolled .scrolling-container {
+    flex-direction: column;
+  }
+  
+  .scrolled .model-viewer-area {
+    width: 100%;
+    height: 60vh;
+  }
+  
+  .scrolled .artifact-info {
+    margin-left: 0;
+    margin-top: var(--spacing-xl);
+  }
+  
+  .artifact-name-overlay h1 {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+@media (max-width: 992px) {
+  .flow-step, 
+  .flow-step.reverse-layout {
+    flex-direction: column;
+    min-height: auto;
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .step-visual, 
+  .step-content {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+  
+  .step-visual {
+    height: 40vh;
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .step-content {
+    padding: 0;
+  }
+
+  .step-number {
+    font-size: var(--font-size-5xl);
+    top: 0;
+    left: 0;
+  }
+  
+  .flow-display-area {
+    flex-direction: column;
+    gap: var(--spacing-xl);
+  }
+
+  .model-container {
+    width: 100%;
+    order: 2;
+  }
+
+  .content-container {
+    width: 100%;
+    text-align: center;
+    order: 1;
+  }
+  
+  .content-container h2 {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .logo {
+    width: 100%;
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .nav-links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .nav-links a {
+    margin: 0 var(--spacing-md);
+  }
+
+  .lang-toggle-btn {
+    width: 100%;
+    margin-top: var(--spacing-md);
+  }
+
+  .hero-section {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .hero-section h1 {
+    font-size: var(--font-size-4xl);
+  }
+
+  .hero-section p {
+    font-size: var(--font-size-base);
+  }
+
+  .page-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .artifact-card {
+    padding: var(--spacing-lg);
+  }
+
+  .artifact-thumb {
+    height: 180px;
+  }
+
+  .artifact-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .scrolling-container {
+    height: auto;
+    overflow-y: visible;
+  }
+  
+  .model-viewer-area {
+    height: 60vh;
+    position: relative;
+  }
+  
+  .artifact-info {
+    margin-top: var(--spacing-xl);
+    opacity: 1;
+  }
+  
+  .artifact-name-overlay {
+    bottom: 5%;
+    left: 5%;
+  }
+  
+  .artifact-name-overlay h1 {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .cta-button {
+    display: none;
+  }
+  
+  .artifact-info h1 {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .artifact-info p {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-links {
+    flex-wrap: wrap;
+  }
+  
+  .nav-links a {
+    margin: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-base);
+  }
+  
+  .hero-section h1 {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .artifact-list-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .artifact-info {
+    padding: var(--spacing-xl);
+  }
+  
+  .artifact-name-overlay h1 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .full-process-page .page-title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .full-process-page .intro-text {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* 响应式工具类 */
+@media (max-width: 640px) {
+  .sm\:hidden { display: none; }
+  .sm\:block { display: block; }
+  .sm\:flex { display: flex; }
+  .sm\:text-center { text-align: center; }
+  .sm\:text-left { text-align: left; }
+  .sm\:text-right { text-align: right; }
+  .sm\:w-full { width: 100%; }
+  .sm\:flex-col { flex-direction: column; }
+}
+
+@media (max-width: 768px) {
+  .md\:hidden { display: none; }
+  .md\:block { display: block; }
+  .md\:flex { display: flex; }
+  .md\:text-center { text-align: center; }
+  .md\:text-left { text-align: left; }
+  .md\:text-right { text-align: right; }
+  .md\:w-full { width: 100%; }
+  .md\:flex-col { flex-direction: column; }
+}
+
+@media (max-width: 1024px) {
+  .lg\:hidden { display: none; }
+  .lg\:block { display: block; }
+  .lg\:flex { display: flex; }
+  .lg\:text-center { text-align: center; }
+  .lg\:text-left { text-align: left; }
+  .lg\:text-right { text-align: right; }
+  .lg\:w-full { width: 100%; }
+  .lg\:flex-col { flex-direction: column; }
+}
+
+@media (max-width: 1280px) {
+  .xl\:hidden { display: none; }
+  .xl\:block { display: block; }
+  .xl\:flex { display: flex; }
+  .xl\:text-center { text-align: center; }
+  .xl\:text-left { text-align: left; }
+  .xl\:text-right { text-align: right; }
+  .xl\:w-full { width: 100%; }
+  .xl\:flex-col { flex-direction: column; }
+}
